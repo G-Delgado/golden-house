@@ -1,19 +1,21 @@
 package model;
 
 public class User extends Employee{
-	private String userName;
+	private String username;
 	private String password;
 	
-	public User(String n, String ln, String id) {
+	public User(String n, String ln, String id, String us, String pass) {
 		super(n,ln,id);
+		username = us;
+		password = pass;
 	}
 	
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 	
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	public String getPassword() {

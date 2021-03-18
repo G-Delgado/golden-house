@@ -11,6 +11,33 @@ public class GoldenHouse {
 	private ArrayList<Employee> employees;
 	private ArrayList<User> users;
 	
+	public GoldenHouse() {
+		products = new ArrayList<>();
+		ingredients = new ArrayList<>();
+		types = new ArrayList<>();
+		orders = new ArrayList<>();
+		clients = new ArrayList<>();
+		employees = new ArrayList<>();
+		users = new ArrayList<>();
+	}
+	
+	public void addUser(String n, String ln, String id, String us, String pass) {
+		User mockUser = new User(n,ln,id,us,pass);
+		// Recordar que deben agregarse de forma ORDENADA!!!!!!!
+		users.add(mockUser);
+	}
+	
+	public boolean isUser(String username, String password) {
+		boolean isUser = false;
+		// Hay que buscar un algoritmo más eficiente
+		for (int i = 0; i < users.size() && !isUser; i++) {
+			if (users.get(i).getUsername().equals(username) && users.get(i).getPassword().equals(password)) {
+				isUser = true;
+			}
+		}
+		return isUser;
+	}
+	
 	/**
 	 * @return the products
 	 */
