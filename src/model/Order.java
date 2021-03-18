@@ -14,6 +14,13 @@ public class Order {
 	//private Date hour; // Separated?
 	private String observations;
 	
+	private User createdBy;
+	private User lastModifiedBy;
+	
+	public Order() { //
+		
+	} 
+	
 	/**
 	 * @return the code
 	 */
@@ -110,6 +117,34 @@ public class Order {
 	 */
 	public void setObservations(String observations) {
 		this.observations = observations;
+	}
+
+	/**
+	 * @return the lastModifiedBy
+	 */
+	public User getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	/**
+	 * @param lastModifiedBy the lastModifiedBy to set
+	 */
+	public void setLastModifiedBy(User lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	/**
+	 * @return the createdBy
+	 */
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	/**
+	 * @param createdBy the createdBy to set
+	 */
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 	
 	
