@@ -4,6 +4,10 @@ public class User extends Employee{
 	private String userName;
 	private String password;
 	
+	public User(String n, String ln, String id) {
+		super(n,ln,id);
+	}
+	
 	public String getUserName() {
 		return userName;
 	}

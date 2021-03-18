@@ -5,6 +5,10 @@ public class Client extends Person{
 	private int phoneNumber;
 	private String observations; /*Not much idea of what this is.*/
 	
+	public Client(String n, String ln, String id) {
+		super(n,ln,id);
+	}
+	
 	public String getAddress() {
 		return address;
 	}

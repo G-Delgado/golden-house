@@ -14,60 +14,103 @@ public class Order {
 	//private Date hour; // Separated?
 	private String observations;
 	
+	/**
+	 * @return the code
+	 */
 	public String getCode() {
 		return code;
 	}
 	
+	/**
+	 * @param code the code to set
+	 */
 	public void setCode(String code) {
 		this.code = code;
 	}
 	
+	/**
+	 * @return the state
+	 */
 	public State getState() {
 		return state;
 	}
 	
+	/**
+	 * @param state the state to set
+	 */
 	public void setState(State state) {
 		this.state = state;
 	}
 	
+	/**
+	 * @return the products
+	 */
 	public List<Product> getProducts() {
 		return products;
 	}
 	
+	/**
+	 * @param products the products to set
+	 */
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 	
+	/**
+	 * @return the client
+	 */
 	public Client getClient() {
 		return client;
 	}
 	
+	/**
+	 * @param client the client to set
+	 */
 	public void setClient(Client client) {
 		this.client = client;
 	}
 	
+	/**
+	 * @return the employee
+	 */
 	public Employee getEmployee() {
 		return employee;
 	}
 	
+	/**
+	 * @param employee the employee to set
+	 */
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
 	
+	/**
+	 * @return the date
+	 */
 	public Date getDate() {
 		return date;
 	}
 	
+	/**
+	 * @param date the date to set
+	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
 	
+	/**
+	 * @return the observations
+	 */
 	public String getObservations() {
 		return observations;
 	}
 	
+	/**
+	 * @param observations the observations to set
+	 */
 	public void setObservations(String observations) {
 		this.observations = observations;
 	}
+	
 	
 }
