@@ -18,7 +18,7 @@ public class GoldenHouseGUI {
 	
 	private GoldenHouse gh;
 	
-	//private GoldenHouseMainGUI ghMainGUI;
+	private GoldenHouseMainGUI ghMainGUI;
 	
 	// Main Pane ---
 	
@@ -94,8 +94,8 @@ public class GoldenHouseGUI {
 	@FXML
 	public void loadMain() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GH.fxml"));
-		//ghMainGUI = new GoldenHouseMainGUI(gh);
-		fxmlLoader.setController(this); // For the moment, but it probably needs another controller
+		ghMainGUI = new GoldenHouseMainGUI(gh, mainPane);
+		fxmlLoader.setController(ghMainGUI); // For the moment, but it probably needs another controller
 		// .setController(ghMainGUI);
 		Parent GoldenHouse = fxmlLoader.load();
 		mainPane.getChildren().clear();
@@ -127,6 +127,16 @@ public class GoldenHouseGUI {
 			// Validate that the id never repeats
 			gh.addUser(registerName.getText(), registerLastName.getText(), id, registerUsername.getText(), registerPassword.getText());
 			System.out.println("\nId: " + id);
+			try {
+				registerUsername.setText("");
+				registerPassword.setText("");
+				registerName.setText("");
+				registerLastName.setText("");
+				loadMain();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			warningLabel.setText("Ingrese todos los campos");
 		}

@@ -38,6 +38,10 @@ public class GoldenHouse {
 		return isUser;
 	}
 	
+	public void addIngredient() {
+		
+	}
+	
 	/**
 	 * @return the products
 	 */
