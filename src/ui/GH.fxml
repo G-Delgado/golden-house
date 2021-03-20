@@ -21,9 +21,9 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <Button mnemonicParsing="false" onAction="#loadAdd" text="Agregar" />
-            <Button mnemonicParsing="false" text="Editar" />
-            <Button mnemonicParsing="false" text="Eliminar" />
+            <Button fx:id="addSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Agregar" />
+            <Button fx:id="editSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Editar" />
+            <Button fx:id="deleteSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Eliminar" />
             <Button mnemonicParsing="false" text="Generar reportes" />
          </children>
          <padding>
@@ -47,7 +47,7 @@
                   <Insets left="5.0" />
                </padding>
             </Pane>
-            <StackPane fx:id="ghPane" alignment="TOP_LEFT" prefHeight="339.0" prefWidth="424.0" style="-fx-background-color: #000000;" VBox.vgrow="ALWAYS" />
+            <StackPane fx:id="ghPane" alignment="TOP_CENTER" prefHeight="339.0" prefWidth="424.0" style="-fx-background-color: #000000;" VBox.vgrow="ALWAYS" />
          </children>
          <HBox.margin>
             <Insets />

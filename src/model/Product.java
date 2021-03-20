@@ -4,10 +4,19 @@ import java.util.ArrayList;
 
 public class Product {
 	private String name;
+	// Size will be a String for the moment
 	private String size;
 	private double price;
 	private Type type;
 	private ArrayList<Ingredient> ingredients;
+	
+	public Product(String n, String s, double p, Type ty, ArrayList<Ingredient> ar) {
+		name = n;
+		size = s;
+		price = p;
+		type = ty;
+		ingredients = ar;
+	}
 	
 	/**
 	 * @return the name

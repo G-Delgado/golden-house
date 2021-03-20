@@ -2,10 +2,14 @@ package ui;
 
 import java.io.IOException;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -28,6 +32,16 @@ public class GoldenHouseMainGUI {
 	private StackPane ghPane;
 	
 	@FXML
+	private Button addSub;
+	
+	@FXML
+	private Button editSub;
+	
+	@FXML
+	private Button deleteSub;
+	
+	
+	@FXML
 	private VBox menu;
 	
 	// Ingredient
@@ -37,6 +51,20 @@ public class GoldenHouseMainGUI {
 	// Type
 	@FXML
 	private TextField typeTxt;
+	
+	// Product
+	
+	@FXML
+	private TextField productName;
+	
+	@FXML
+	private TextField productSize;
+	
+	@FXML
+	private TextField productPrice;
+	
+	@FXML
+	private ComboBox<String> productType;
 	
 	public GoldenHouseMainGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp) {
 		gh = goldenHouse;
@@ -56,12 +84,14 @@ public class GoldenHouseMainGUI {
 			mainPane.setCenter(main);
 			//mainPane.setCenter(ingredient);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	@FXML
+	@FXML /* We do a loadAdd, therefore we should do a loadEdit and a loadDelete.
+	// Nevertheless, it is probably better to do one method called
+	loadSubMenu in which we apply the event.getSource() and check which is the button we are clicking
+	So we can load 3 fxml with one method*/
 	public void loadAdd(ActionEvent event) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add.fxml"));
 		fxmlLoader.setController(this);
@@ -71,9 +101,31 @@ public class GoldenHouseMainGUI {
 			menu.getChildren().setAll(add);
 			//mainPane.setCenter(ingredient);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@FXML
+	public void loadSubMenu(ActionEvent event) {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(""));;
+		if (event.getSource() == addSub) {
+			fxmlLoader = new FXMLLoader(getClass().getResource("Add.fxml"));
+		} else if (event.getSource() == editSub) {
+			fxmlLoader = new FXMLLoader(getClass().getResource("Edit.fxml"));
+		} else if (event.getSource() == deleteSub) {
+			fxmlLoader = new FXMLLoader(getClass().getResource("Delete.fxml"));
+		}
+		
+		fxmlLoader.setController(this);
+		Parent subMenu;
+		try {
+			subMenu = fxmlLoader.load();
+			menu.getChildren().clear();
+			menu.getChildren().setAll(subMenu);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML
@@ -86,7 +138,6 @@ public class GoldenHouseMainGUI {
 			ghPane.getChildren().setAll(ingredient);
 			//mainPane.setCenter(ingredient);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -99,6 +150,28 @@ public class GoldenHouseMainGUI {
 	}
 	
 	@FXML
+	public void loadProduct(ActionEvent event) {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Product.fxml"));
+		fxmlLoader.setController(this);
+		try {
+			Parent ingredient = fxmlLoader.load();
+			ghPane.getChildren().clear();
+			ghPane.getChildren().setAll(ingredient);
+			//mainPane.setCenter(ingredient);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// -------- Setting things up --------- //
+		
+		ObservableList<String> options = FXCollections.observableArrayList();
+		for (int i = 0; i < gh.getTypes().size(); i++) {
+			options.add(gh.getTypes().get(i).getName());
+		}
+		productType.setItems(options);
+	}
+	
+	@FXML
 	public void loadType(ActionEvent event) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Type.fxml"));
 		fxmlLoader.setController(this);
@@ -107,7 +180,6 @@ public class GoldenHouseMainGUI {
 			ghPane.getChildren().clear();
 			ghPane.getChildren().setAll(type);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -52,6 +52,17 @@ public class GoldenHouse {
 		System.out.println(ty.toString());
 	}
 	
+	public void addProduct(String n, String s, double p, String ty, ArrayList<Ingredient> ig) {
+		boolean foundType = false;
+		for (int i = 0; i < types.size() && !foundType; i++) {
+			if (types.get(i).getName().equals(ty)) {
+				Product pr = new Product(n,s,p,types.get(i),ig);
+				products.add(pr);
+				foundType = true;
+			}
+		}
+	}
+	
 	/**
 	 * @return the products
 	 */
