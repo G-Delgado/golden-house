@@ -75,10 +75,11 @@ public class GoldenHouseGUI {
 	public void login(ActionEvent event) {
 		if (!loginUsername.getText().equals("") && !loginPassword.getText().equals("")) {
 			System.out.println("Fua, bien hecho!");
-			if (gh.isUser(loginUsername.getText(), loginPassword.getText())) {
+			int userPos = gh.isUser(loginUsername.getText(), loginPassword.getText());
+			if (userPos != -1) {
 				try {
 					warningLabel.setText("");
-					loadMain();
+					loadMain(loginUsername.getText(), loginPassword.getText());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -91,10 +92,10 @@ public class GoldenHouseGUI {
 		}
 	}
 	
-	@FXML
-	public void loadMain() throws IOException {
+	//@FXML // Check this
+	public void loadMain(String username, String password) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GH.fxml"));
-		ghMainGUI = new GoldenHouseMainGUI(gh, mainPane);
+		ghMainGUI = new GoldenHouseMainGUI(gh, username, password, mainPane);
 		fxmlLoader.setController(ghMainGUI); // For the moment, but it probably needs another controller
 		// .setController(ghMainGUI);
 		Parent GoldenHouse = fxmlLoader.load();
@@ -120,6 +121,7 @@ public class GoldenHouseGUI {
 	
 	@FXML
 	public void register(ActionEvent event) {
+		System.out.println("Im in register");
 		if (!registerUsername.getText().equals("") && !registerPassword.getText().equals("") && !registerName.getText().equals("") && !registerLastName.getText().equals("")) {
 			System.out.println("Epa, cuenta creada:" + "\nName: " + registerName.getText() + "\nLast name: " + registerLastName.getText() + "\nUsername: " + registerUsername.getText() + "\nPassword: " + registerPassword.getText());
 			int num = (int)(Math.random() * 100000);
@@ -128,11 +130,11 @@ public class GoldenHouseGUI {
 			gh.addUser(registerName.getText(), registerLastName.getText(), id, registerUsername.getText(), registerPassword.getText());
 			System.out.println("\nId: " + id);
 			try {
-				registerUsername.setText("");
+				loadMain(registerUsername.getText(), registerPassword.getText());
+				/*registerUsername.setText("");
 				registerPassword.setText("");
 				registerName.setText("");
-				registerLastName.setText("");
-				loadMain();
+				registerLastName.setText("");*/
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

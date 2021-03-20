@@ -27,19 +27,23 @@ public class GoldenHouse {
 		users.add(mockUser);
 	}
 	
-	public boolean isUser(String username, String password) {
+	public int isUser(String username, String password) {
 		boolean isUser = false;
+		int pos = -1;
 		// Hay que buscar un algoritmo más eficiente
 		for (int i = 0; i < users.size() && !isUser; i++) {
 			if (users.get(i).getUsername().equals(username) && users.get(i).getPassword().equals(password)) {
 				isUser = true;
+				pos = i;
 			}
 		}
-		return isUser;
+		return pos;
 	}
 	
-	public void addIngredient() {
-		
+	public void addIngredient(String ingredient, User createdBy) {
+		Ingredient ig = new Ingredient(ingredient, createdBy);
+		ingredients.add(ig);
+		System.out.println(ig.toString());
 	}
 	
 	/**

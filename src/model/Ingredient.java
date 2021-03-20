@@ -52,6 +52,12 @@ public class Ingredient {
 	public void setLastModifiedBy(User lastModifiedBy) {
 		this.lastModifiedBy = lastModifiedBy;
 	}
+	
+	@Override
+	public String toString() {
+		String details = "Name: " + name + "\nCreated by: " + createdBy.getUsername() + "\nLast modified by: " + lastModifiedBy.getUsername();
+		return details;
+	}
 
 
 }

@@ -26,4 +26,12 @@ public class User extends Employee{
 		this.password = password;
 	}
 	
+	@Override
+	public String toString() {
+		String details = "Username: " + username + "\nPassword: " + password;
+		// Remember, he also has the attributes of name, lastName, id.
+		return details;
+		
+	}
+	
 }
