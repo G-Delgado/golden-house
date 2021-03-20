@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -65,6 +68,9 @@ public class GoldenHouseMainGUI {
 	
 	@FXML
 	private ComboBox<String> productType;
+	
+	@FXML
+	private ListView<String> ingredientsList;
 	
 	public GoldenHouseMainGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp) {
 		gh = goldenHouse;
@@ -169,6 +175,30 @@ public class GoldenHouseMainGUI {
 			options.add(gh.getTypes().get(i).getName());
 		}
 		productType.setItems(options);
+		
+		ObservableList<String> listOptions = FXCollections.observableArrayList();
+		for (int i = 0; i < gh.getIngredients().size(); i++) {
+			listOptions.add(gh.getIngredients().get(i).getName());
+		}
+		
+		ingredientsList.setItems(listOptions);
+		
+		ingredientsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+	}
+	
+	@FXML
+	public void addProduct(ActionEvent event) {
+		// Warning
+		String name = productName.getText();
+		String size = productSize.getText();
+		double price = Double.parseDouble(productPrice.getText());
+		String type = productType.getValue();
+		ObservableList<String> igs = ingredientsList.getSelectionModel().getSelectedItems();
+		ArrayList<String> arr = new ArrayList<>();
+		for (String ig: igs) {
+			arr.add(ig);
+		}
+		gh.addProduct(name, size, price, type, arr);
 	}
 	
 	@FXML

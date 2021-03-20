@@ -45,6 +45,16 @@ public class GoldenHouse {
 		ingredients.add(ig);
 		System.out.println(ig.toString());
 	}
+	
+	public int searchIngredientPos(String igName) { // Me serviria un algoritmo de busqueda
+		int pos = -1;
+		for (int i = 0; i < ingredients.size(); i++) {
+			if (igName.equals(ingredients.get(i).getName())) {
+				pos = i;
+			}
+		}
+		return pos;
+	}
 
 	public void addType(String type, User createdBy) {
 		Type ty = new Type(type, createdBy);
@@ -52,15 +62,23 @@ public class GoldenHouse {
 		System.out.println(ty.toString());
 	}
 	
-	public void addProduct(String n, String s, double p, String ty, ArrayList<Ingredient> ig) {
+	public void addProduct(String n, String s, double p, String ty, ArrayList<String> ig) {
 		boolean foundType = false;
+		Type type = null;
 		for (int i = 0; i < types.size() && !foundType; i++) {
 			if (types.get(i).getName().equals(ty)) {
-				Product pr = new Product(n,s,p,types.get(i),ig);
-				products.add(pr);
+				type = types.get(i);
 				foundType = true;
 			}
 		}
+		ArrayList<Ingredient> ing = new ArrayList<>();
+		for (int i = 0; i < ig.size(); i++) {
+			ing.add(ingredients.get(searchIngredientPos(ig.get(i))));
+		}
+		
+		System.out.println(ing);
+		Product pr = new Product(n,s,p,type,ing);
+		products.add(pr);
 	}
 	
 	/**
