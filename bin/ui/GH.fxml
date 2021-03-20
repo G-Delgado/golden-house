@@ -11,19 +11,20 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER_LEFT" prefHeight="400.0" prefWidth="176.0" spacing="25.0" style="-fx-border-color: #e4d290; -fx-background-color: #000000;">
+      <VBox fx:id="menu" alignment="CENTER_LEFT" prefHeight="400.0" prefWidth="176.0" spacing="25.0" style="-fx-border-color: #e4d290; -fx-background-color: #000000;">
          <children>
-            <Label text="Menu" textFill="#e4d290">
+            <Label prefWidth="76.0" text="Menu" textFill="#e4d290">
                <font>
                   <Font name="Franklin Gothic Heavy" size="29.0" />
                </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" text="Hacer pedido" />
-            <Button mnemonicParsing="false" onAction="#loadIngredient" text="Agregar Ingredientes" />
-            <Button mnemonicParsing="false" text="Agregar tipos de productos" />
-            <Button mnemonicParsing="false" text="Editar productos" />
-            <Button mnemonicParsing="false" text="Remover objeto" />
-            <Button mnemonicParsing="false" text="Agregar clientes" />
+            <Button mnemonicParsing="false" onAction="#loadAdd" text="Agregar" />
+            <Button mnemonicParsing="false" text="Editar" />
+            <Button mnemonicParsing="false" text="Eliminar" />
+            <Button mnemonicParsing="false" text="Generar reportes" />
          </children>
          <padding>
             <Insets left="5.0" />

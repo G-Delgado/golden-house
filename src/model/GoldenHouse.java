@@ -45,6 +45,12 @@ public class GoldenHouse {
 		ingredients.add(ig);
 		System.out.println(ig.toString());
 	}
+
+	public void addType(String type, User createdBy) {
+		Type ty = new Type(type, createdBy);
+		types.add(ty);
+		System.out.println(ty.toString());
+	}
 	
 	/**
 	 * @return the products
