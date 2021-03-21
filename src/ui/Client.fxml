@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="269.0" spacing="15.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Añade un nuevo cliente" textFill="#e4d290">
+         <font>
+            <Font name="Franklin Gothic Heavy" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="15.0" />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="31.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Name" textFill="#e4d290" />
+                  <TextField fx:id="clientName" alignment="CENTER" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Last name" textFill="#e4d290">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="clientLastName" alignment="CENTER" prefHeight="25.0" prefWidth="105.0">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="31.0" prefWidth="600.0">
+         <children>
+            <Label text="Dirección" textFill="#e4d290">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="clientAddress" alignment="CENTER" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="31.0" prefWidth="214.0">
+         <children>
+            <Label text="Telefono" textFill="#e4d290">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="clientPhone" />
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" prefHeight="143.0" prefWidth="223.0">
+         <children>
+            <Label text="Observaciones" textFill="#e4d290" />
+            <TextArea fx:id="clientObservations" prefHeight="114.0" prefWidth="224.0" />
+         </children>
+      </VBox>
+      <Button mnemonicParsing="false" onAction="#addClient" text="Añadir" />
+   </children>
+</VBox>

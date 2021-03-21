@@ -81,6 +81,12 @@ public class GoldenHouse {
 		products.add(pr);
 	}
 	
+	public void addClient(String n, String ln, String id, String address, String phone, String observations) {
+		Client cl = new Client(n,ln,id,address,phone,observations);
+		clients.add(cl);
+		System.out.println("\n" + cl.toString() + "\n");
+	}
+	
 	/**
 	 * @return the products
 	 */

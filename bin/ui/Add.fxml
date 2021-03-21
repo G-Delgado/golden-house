@@ -14,7 +14,7 @@
          </font>
       </Label>
       <Button mnemonicParsing="false" onAction="#loadProduct" text="Agregar producto" />
-      <Button mnemonicParsing="false" text="Agregar cliente" />
+      <Button mnemonicParsing="false" onAction="#loadClient" text="Agregar cliente" />
       <Button mnemonicParsing="false" onAction="#loadIngredient" text="Agregar ingrediente" />
       <Button mnemonicParsing="false" onAction="#loadType" text="Agregar tipo de producto" />
       <Button mnemonicParsing="false" onAction="#loadMenu" text="Regresar" />

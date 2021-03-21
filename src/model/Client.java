@@ -2,11 +2,14 @@ package model;
 
 public class Client extends Person{
 	private String address;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String observations; /*Not much idea of what this is.*/
 	
-	public Client(String n, String ln, String id) {
+	public Client(String n, String ln, String id, String ad, String ph, String obs) {
 		super(n,ln,id);
+		address = ad;
+		phoneNumber = ph;
+		observations = obs;
 	}
 	
 	public String getAddress() {
@@ -17,11 +20,11 @@ public class Client extends Person{
 		this.address = address;
 	}
 	
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 	
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	
@@ -31,6 +34,15 @@ public class Client extends Person{
 	
 	public void setObservations(String observations) {
 		this.observations = observations;
+	}
+	
+	@Override
+	public String toString() {
+		String obs = observations.length() != 0? observations : "NONE";
+		String details = "Name: " + getName() + "\nLast name: " + getLastName() + "\nId: " + getId() 
+		+ "\nAddress: " + address + "\nPhone: " + phoneNumber + "\nObservations: " + obs;
+		
+		return details;
 	}
 	
 }

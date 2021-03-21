@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -46,6 +47,22 @@ public class GoldenHouseMainGUI {
 	
 	@FXML
 	private VBox menu;
+	
+	// Client
+	@FXML
+	private TextField clientName;
+	
+	@FXML
+	private TextField clientLastName;
+	
+	@FXML
+	private TextField clientAddress;
+	
+	@FXML
+	private TextField clientPhone;
+	
+	@FXML
+	private TextArea clientObservations;
 	
 	// Ingredient
 	@FXML
@@ -98,7 +115,7 @@ public class GoldenHouseMainGUI {
 	// Nevertheless, it is probably better to do one method called
 	loadSubMenu in which we apply the event.getSource() and check which is the button we are clicking
 	So we can load 3 fxml with one method*/
-	public void loadAdd(ActionEvent event) {
+	public void loadAdd(ActionEvent event) { // I probably dont need this anymore
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add.fxml"));
 		fxmlLoader.setController(this);
 		try {
@@ -132,6 +149,32 @@ public class GoldenHouseMainGUI {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@FXML
+	public void loadClient(ActionEvent event) {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Client.fxml"));
+		fxmlLoader.setController(this);
+		try {
+			Parent client = fxmlLoader.load();
+			ghPane.getChildren().clear();
+			ghPane.getChildren().setAll(client);
+			//mainPane.setCenter(ingredient);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void addClient(ActionEvent event) {
+		if (!clientName.getText().equals("") && !clientLastName.getText().equals("") && !clientAddress.getText().equals("") && !clientPhone.getText().equals("")) {			
+			int num = (int)(Math.random() * 100000);
+			String id = clientName.getText().substring(0,2) + clientLastName.getText().substring(0,2) + num;
+			gh.addClient(clientName.getText(), clientLastName.getText(), id, clientAddress.getText(), clientPhone.getText(), clientObservations.getText());
+			// Didn't add the observations in the conditional as they shouldn't be mandatory
+		} else {
+			
+		}
 	}
 	
 	@FXML
