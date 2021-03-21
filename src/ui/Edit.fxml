@@ -13,10 +13,10 @@
             <Font name="Franklin Gothic Heavy" size="29.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" text="Editar producto" />
-      <Button mnemonicParsing="false" text="Editar cliente" />
-      <Button mnemonicParsing="false" text="Editar ingrediente" />
-      <Button mnemonicParsing="false" text="Editar tipo de producto" />
+      <Button fx:id="editProductBtn" mnemonicParsing="false" onAction="#loadEdit" text="Editar producto" />
+      <Button fx:id="editClientBtn" mnemonicParsing="false" onAction="#loadEdit" text="Editar cliente" />
+      <Button fx:id="editIngredientBtn" mnemonicParsing="false" onAction="#loadEdit" text="Editar ingrediente" />
+      <Button fx:id="editTypeBtn" mnemonicParsing="false" onAction="#loadEdit" text="Editar tipo de producto" />
       <Button mnemonicParsing="false" onAction="#loadMenu" text="Regresar" />
    </children>
    <padding>
