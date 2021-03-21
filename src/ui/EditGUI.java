@@ -57,9 +57,18 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 	
 	// Edit Client
 	
+	@FXML
+	private ListView<String> clientList;
+	
 	// Edit Ingredient
 	
+	@FXML
+	private ListView<String> ingredientList;
+	
 	// Edit Type
+	
+	@FXML
+	private ListView<String> typeList;
 	
 	public EditGUI(GoldenHouse gh, User sessionUser, BorderPane mainPane, StackPane ghPane) {
 		super(gh,sessionUser.getUsername(), sessionUser.getPassword(), mainPane);
@@ -96,16 +105,33 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 				productList.setItems(products);
 				productList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 			} else if (event.getSource() == editClientBtn) {
+				ObservableList<String> clients = FXCollections.observableArrayList();
+				for (int i = 0; i < gh.getClients().size(); i++) {
+					clients.add(gh.getClients().get(i).getName());
+				}
+				clientList.setItems(clients);
+				clientList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 				
 			} else if (event.getSource() == editIngredientBtn) {
+				ObservableList<String> ingredients = FXCollections.observableArrayList();
+				for (int i = 0; i < gh.getIngredients().size(); i++) {
+					ingredients.add(gh.getIngredients().get(i).getName());
+				}
+				ingredientList.setItems(ingredients);
+				ingredientList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 				
 			} else if (event.getSource() == editTypeBtn) {
+				ObservableList<String> types = FXCollections.observableArrayList();
+				for (int i = 0; i < gh.getTypes().size(); i++) {
+					types.add(gh.getTypes().get(i).getName());
+				}
+				typeList.setItems(types);
+				typeList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 				
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	@FXML

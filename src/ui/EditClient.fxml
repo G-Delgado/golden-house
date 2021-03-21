@@ -27,7 +27,7 @@
             </Label>
          </children>
       </HBox>
-      <ListView fx:id="productList" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="clientList" prefHeight="200.0" prefWidth="200.0" />
       <Button mnemonicParsing="false" onAction="#editProduct" text="Editar" />
    </children>
 </VBox>

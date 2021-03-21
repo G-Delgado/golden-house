@@ -1,6 +1,6 @@
 package model;
 
-public class Person {
+public abstract class Person { // Remember, Person is abstract
 	private String name;
 	private String lastName;
 	private String id;
