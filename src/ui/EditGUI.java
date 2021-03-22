@@ -47,6 +47,9 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 	private Button editClientBtn;
 	
 	@FXML
+	private Button editEmployeeBtn;
+	
+	@FXML
 	private Button editIngredientBtn;
 	
 	@FXML
@@ -99,6 +102,20 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 	@FXML
 	private TextArea editClientObservations;
 	
+	// Edit Employee
+	
+	@FXML
+	private TextField editEmployeeName;
+	
+	@FXML
+	private TextField editEmployeeLastName;
+	
+	@FXML
+	private String oldEmployeeName;
+	
+	@FXML
+	private ListView<String> employeesList;
+	
 	// Edit Ingredient
 	
 	@FXML
@@ -136,6 +153,8 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 			fxmlLoader = new FXMLLoader(getClass().getResource("EditProduct.fxml"));	
 		} else if (event.getSource() == editClientBtn) {
 			fxmlLoader = new FXMLLoader(getClass().getResource("EditClient.fxml"));
+		} else if (event.getSource() == editEmployeeBtn) {
+			fxmlLoader = new FXMLLoader(getClass().getResource("EditEmployee.fxml"));
 		} else if (event.getSource() == editIngredientBtn) {
 			fxmlLoader = new FXMLLoader(getClass().getResource("EditIngredient.fxml"));
 		} else if (event.getSource() == editTypeBtn) {
@@ -163,6 +182,13 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 				clientList.setItems(clients);
 				clientList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 				
+			} else if (event.getSource() == editEmployeeBtn) {
+				ObservableList<String> employees = FXCollections.observableArrayList();
+				for (int i = 0; i < gh.getEmployees().size(); i++) {
+					employees.add(gh.getEmployees().get(i).getName());
+				}
+				employeesList.setItems(employees);
+				employeesList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 			} else if (event.getSource() == editIngredientBtn) {
 				ObservableList<String> ingredients = FXCollections.observableArrayList();
 				for (int i = 0; i < gh.getIngredients().size(); i++) {
@@ -283,6 +309,38 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 	}
 	
 	@FXML
+	public void editEmployee(ActionEvent event) {
+		String em = employeesList.getSelectionModel().getSelectedItem();
+		oldEmployeeName = em;
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditOneEmployee.fxml"));
+		fxmlLoader.setController(this);
+		
+		try {
+			Parent edit = fxmlLoader.load();
+			ghPane.getChildren().clear();
+			ghPane.getChildren().setAll(edit);
+			editEmployeeName.setText(em);
+			editEmployeeLastName.setText(gh.getEmployeeByName(em).getLastName());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void finishEmployeeEdit(ActionEvent event) {
+		String name = editEmployeeName.getText();
+		String lastName = editEmployeeLastName.getText();
+		
+		gh.editEmployee(oldEmployeeName, name, lastName);
+		
+		try {
+			gh.saveEmployees();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
 	public void editIngredient(ActionEvent event) {
 		String ig = ingredientList.getSelectionModel().getSelectedItem();
 		oldIngredientName = ig;
@@ -309,6 +367,7 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//editIngredientName.setText("");
 		editIngredient(event);
 	}
 	

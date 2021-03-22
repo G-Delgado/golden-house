@@ -33,7 +33,14 @@ public class AddGUI extends GoldenHouseMainGUI{
 	private StackPane ghPane;
 	
 	
-	// Add Menu
+	// Add Menu -----------//
+	
+	// Employee
+	@FXML
+	private TextField employeeName;
+	
+	@FXML
+	private TextField employeeLastName;
 	
 	// Client
 	@FXML
@@ -110,6 +117,35 @@ public class AddGUI extends GoldenHouseMainGUI{
 				e.printStackTrace();
 			}
 			// Didn't add the observations in the conditional as they shouldn't be mandatory
+		} else {
+			
+		}
+	}
+	
+	@FXML
+	public void loadEmployee(ActionEvent event) {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Employee.fxml"));
+		fxmlLoader.setController(this);
+		try {
+			Parent employee = fxmlLoader.load();
+			ghPane.getChildren().clear();
+			ghPane.getChildren().setAll(employee);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void addEmployee(ActionEvent event) {
+		if (!employeeName.getText().equals("") && !employeeLastName.getText().equals("")) {
+			int num = (int)(Math.random() * 100000);
+			String id = employeeName.getText().substring(0,2) + employeeLastName.getText().substring(0,2) + num;
+			gh.addEmployee(employeeName.getText(), employeeLastName.getText(), id);
+			try {
+				gh.saveEmployees();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else {
 			
 		}

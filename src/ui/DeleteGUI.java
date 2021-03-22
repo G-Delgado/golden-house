@@ -39,6 +39,11 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 	@FXML
 	private ListView<String> deleteClientList;
 	
+	
+	// Employee
+	@FXML
+	private ListView<String> deleteEmployeeList;
+	
 	// Ingredient
 	
 	@FXML
@@ -122,6 +127,40 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 			e.printStackTrace();
 		}
 		loadDeleteClient(event);
+	}
+	
+	@FXML
+	public void loadDeleteEmployee(ActionEvent event) {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DeleteEmployee.fxml"));
+		fxmlLoader.setController(this);
+		
+		try {
+			Parent delete = fxmlLoader.load();
+			ghPane.getChildren().clear();
+			ghPane.getChildren().setAll(delete);
+			
+			ObservableList<String> options = FXCollections.observableArrayList();
+			for (int i = 0; i < gh.getEmployees().size(); i++) {
+				options.add(gh.getEmployees().get(i).getName());
+			}
+			deleteEmployeeList.setItems(options);
+			deleteEmployeeList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@FXML
+	public void finishEmployeeDelete(ActionEvent event) {
+		String em = deleteEmployeeList.getSelectionModel().getSelectedItem();
+		gh.deleteEmployee(em);
+		try {
+			gh.saveEmployees();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		loadDeleteEmployee(event);
 	}
 	
 	@FXML

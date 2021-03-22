@@ -151,6 +151,42 @@ public class GoldenHouse {
 		return pos;
 	}
 	
+	public void addEmployee(String name, String lastName, String id) {
+		Employee em = new Employee(name, lastName, id);
+		employees.add(em);
+	}
+	
+	public Employee getEmployeeByName(String name) {
+		Employee em = null;
+		for (int i = 0; i < employees.size() && em == null; i++) {
+			if (employees.get(i).getName().equals(name)) {
+				em = employees.get(i);
+			}
+		}
+		return em;
+	}
+	
+	public void editEmployee(String n, String newN, String ln) {
+		Employee em = null;
+		for (int i = 0; i < employees.size() && em == null; i++) {
+			if (employees.get(i).getName().equals(n)) {
+				em = employees.get(i);
+			}
+		}
+		em.setName(newN);
+		em.setLastName(ln);
+	}
+	
+	public void deleteEmployee(String name) {
+		boolean found = false;
+		for (int i = 0; i < employees.size() && !found; i++) {
+			if (employees.get(i).getName().equals(name)) {
+				employees.remove(i);
+				found = true;
+			}
+		}
+	}
+	
 	public void addIngredient(String ingredient, User createdBy) {
 		Ingredient ig = new Ingredient(ingredient, createdBy);
 		ingredients.add(ig);
