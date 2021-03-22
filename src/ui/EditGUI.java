@@ -114,7 +114,11 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 	@FXML
 	private ListView<String> typeList;
 	
+	@FXML
+	private TextField editTypeName;
+	
 	private String oldTypeName;
+	
 	
 	// Constructor --------------------
 	public EditGUI(GoldenHouse gh, User sessionUser, BorderPane mainPane, StackPane ghPane) {
@@ -295,11 +299,24 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 	public void editType(ActionEvent event) {
 		String ty = typeList.getSelectionModel().getSelectedItem();
 		oldTypeName = ty;
+		
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditOneType.fxml"));
+		fxmlLoader.setController(this);
+		
+		try {
+			Parent edit = fxmlLoader.load();
+			ghPane.getChildren().clear();
+			ghPane.getChildren().setAll(edit);
+			editTypeName.setText(ty);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
 	public void finishTypeEdit(ActionEvent event) {
-		
+		String name = editTypeName.getText();
+		gh.editType(oldTypeName, name, sessionUser);
 	}
 	
 	

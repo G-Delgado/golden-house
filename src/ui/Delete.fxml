@@ -13,10 +13,10 @@
             <Font name="Franklin Gothic Heavy" size="29.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" text="Eliminar producto" />
-      <Button mnemonicParsing="false" text="Eliminar cliente" />
-      <Button mnemonicParsing="false" text="Eliminar ingrediente" />
-      <Button mnemonicParsing="false" text="Eliminarr tipo de producto" />
+      <Button mnemonicParsing="false" onAction="#loadDeleteProduct" text="Eliminar producto" />
+      <Button mnemonicParsing="false" onAction="#loadDeleteClient" text="Eliminar cliente" />
+      <Button mnemonicParsing="false" onAction="#loadDeleteIngredient" text="Eliminar ingrediente" />
+      <Button mnemonicParsing="false" onAction="#loadDeleteType" text="Eliminar tipo de producto" />
       <Button mnemonicParsing="false" onAction="#loadMenu" text="Regresar" />
    </children>
    <padding>

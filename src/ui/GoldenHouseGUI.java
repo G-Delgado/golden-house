@@ -51,7 +51,8 @@ public class GoldenHouseGUI {
 	
 	// Recover ---
 	
-	public GoldenHouseGUI(GoldenHouse gh) {
+	public GoldenHouseGUI(GoldenHouse gh, BorderPane mp) {
+		mainPane = mp;
 		this.gh = gh;
 	}
 	
@@ -151,6 +152,5 @@ public class GoldenHouseGUI {
 		login = fxmlLoader.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(login);
-		
 	}
 }

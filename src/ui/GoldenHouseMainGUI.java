@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import model.GoldenHouse;  // Podría ahorrarme el importar siempre si uso un extends para cada controller
 import model.User; // Podría ahorrarme el importar siempre si uso un extends para cada controller
 
-public class GoldenHouseMainGUI {  // Podría ahorrarme el importar siempre si uso un extends para cada controller
+public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el importar siempre si uso un extends para cada controller
 	 
 	private GoldenHouse gh;
 	
@@ -49,6 +49,7 @@ public class GoldenHouseMainGUI {  // Podría ahorrarme el importar siempre si us
 	
 	
 	public GoldenHouseMainGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp) {
+		super(goldenHouse, mp);
 		gh = goldenHouse;
 		int pos = gh.isUser(username, password);
 		this.sessionUser = gh.getUsers().get(pos);

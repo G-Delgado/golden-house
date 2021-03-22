@@ -32,7 +32,7 @@
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
          <children>
-            <Pane prefHeight="42.0" prefWidth="424.0" style="-fx-background-color: #000000;" VBox.vgrow="ALWAYS">
+            <Pane prefHeight="29.0" prefWidth="424.0" style="-fx-background-color: #000000;" VBox.vgrow="ALWAYS">
                <children>
                   <Label text="Golden House" textFill="#e4d290">
                      <font>
@@ -42,6 +42,7 @@
                         <Insets left="5.0" />
                      </padding>
                   </Label>
+                  <Button layoutX="325.0" layoutY="5.0" mnemonicParsing="false" onAction="#loadLogin" text="Cerrar sesión" />
                </children>
                <padding>
                   <Insets left="5.0" />

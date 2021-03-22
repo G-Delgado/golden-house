@@ -72,10 +72,46 @@ public class GoldenHouse {
 		System.out.println("\nAfter: " + ig.toString());
 	}
 	
+	public void deleteIngredient(String name) {
+		boolean found = false;
+		for (int i = 0; i < ingredients.size() && !found; i++) {
+			if (ingredients.get(i).getName().equals(name)) {
+				ingredients.remove(i);
+				found = true;
+			}
+		}
+	}
+	
 	public void addType(String type, User createdBy) {
 		Type ty = new Type(type, createdBy);
 		types.add(ty);
 		System.out.println(ty.toString());
+	}
+	
+	public void editType(String n, String newN, User sessionUser) {
+		Type ty = null;
+		for (int i = 0; i < types.size() && ty == null; i++) {
+			if (types.get(i).getName().equals(n)) {
+				ty = types.get(i);
+			}
+		}
+		
+		System.out.println("\nBefore: " + ty.toString());
+		
+		ty.setName(newN);
+		ty.setLastModifiedBy(sessionUser);
+		
+		System.out.println("\nAfter: " + ty.toString());
+	}
+	
+	public void deleteType(String name) {
+		boolean found = false;
+		for (int i = 0; i < types.size() && !found; i++) {
+			if (types.get(i).getName().equals(name)) {
+				types.remove(i);
+				found = true;
+			}
+		}
 	}
 	
 	public void addProduct(String n, String s, double p, String ty, ArrayList<String> ig) {
@@ -137,6 +173,16 @@ public class GoldenHouse {
 		System.out.println("\nAfter: \n" + pr.toString());
 	}
 	
+	public void deleteProduct(String name) {
+		boolean found = false;
+		for (int i = 0; i < products.size() && !found; i++) {
+			if (products.get(i).getName().equals(name)) {
+				products.remove(i);
+				found = true;
+			}
+		}
+	}
+	
 	public Client getClientByName(String n) {
 		Client cl = null;
 		for (int i = 0; i < clients.size(); i++) {
@@ -174,6 +220,15 @@ public class GoldenHouse {
 		System.out.println("\n" + cl.toString() + "\n");
 	}
 	
+	public void deleteClient(String name) {
+		boolean found = false;
+		for (int i = 0; i < clients.size() && !found; i++) {
+			if (clients.get(i).getName().equals(name)) {
+				clients.remove(i);
+				found = true;
+			}
+		}
+	}
 	/**
 	 * @return the products
 	 */

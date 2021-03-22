@@ -15,7 +15,7 @@ public class Main extends Application{
 	public Main() {
 		// Put the GUI and the controller class in the model
 		gh = new GoldenHouse();
-		ghGUI = new GoldenHouseGUI(gh);
+		ghGUI = new GoldenHouseGUI(gh, null);
 		
 		// We can also load the data
 	}
