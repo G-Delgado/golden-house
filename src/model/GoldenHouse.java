@@ -1,8 +1,25 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class GoldenHouse {
+	// Constants
+	
+	public static final String PRODUCTS_FILE = "data/products.gh";
+	public static final String CLIENTS_FILE = "data/clients.gh";
+	public static final String EMPLOYEES_FILE = "data/employees.gh";
+	public static final String INGREDIENTS_FILE = "data/ingredients.gh";
+	public static final String TYPES_FILE = "data/types.gh";
+	public static final String USERS_FILE = "data/users.gh";
+	
+	// Attributes
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
 	private ArrayList<Type> types;
@@ -19,6 +36,100 @@ public class GoldenHouse {
 		clients = new ArrayList<>();
 		employees = new ArrayList<>();
 		users = new ArrayList<>();
+	}
+	
+	public void saveProducts() throws FileNotFoundException, IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PRODUCTS_FILE));
+		oos.writeObject(products);
+		oos.close();
+		
+	}
+	
+	public void saveClients() throws FileNotFoundException, IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CLIENTS_FILE));
+		oos.writeObject(clients);
+		oos.close();
+	}
+	
+	public void saveEmployees() throws FileNotFoundException, IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(EMPLOYEES_FILE));
+		oos.writeObject(employees);
+		oos.close();
+	}
+	
+	public void saveIngredients() throws FileNotFoundException, IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(INGREDIENTS_FILE));
+		oos.writeObject(ingredients);
+		oos.close();
+	}
+	
+	public void saveTypes() throws FileNotFoundException, IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(TYPES_FILE));
+		oos.writeObject(types);
+		oos.close();
+	}
+	
+	public void saveUsers() throws FileNotFoundException, IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(USERS_FILE));
+		oos.writeObject(users);
+		oos.close();
+	}
+	
+	@SuppressWarnings("unchecked") // As I know what the ois.readObject() is going to throw;
+	public void loadProducts() throws ClassNotFoundException, IOException {
+		File pr = new File(PRODUCTS_FILE);
+		if (pr.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(pr));
+			products = (ArrayList<Product>) ois.readObject();
+			ois.close();
+		}
+	}
+	
+	@SuppressWarnings("unchecked") // As I know what the ois.readObject() is going to throw;
+	public void loadClients() throws ClassNotFoundException, IOException {
+		File cl = new File(CLIENTS_FILE);
+		if (cl.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(cl));
+			clients = (ArrayList<Client>) ois.readObject();
+			ois.close();
+		}
+	}
+	
+	@SuppressWarnings("unchecked") // As I know what the ois.readObject() is going to throw;
+	public void loadEmployees() throws ClassNotFoundException, IOException {
+		File em = new File(EMPLOYEES_FILE);
+		if (em.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(em));
+			employees = (ArrayList<Employee>) ois.readObject();
+			ois.close();
+		}
+	}
+	@SuppressWarnings("unchecked") // As I know what the ois.readObject() is going to throw;
+	public void loadIngredients() throws ClassNotFoundException, IOException {
+		File ig = new File(INGREDIENTS_FILE);
+		if (ig.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ig));
+			ingredients = (ArrayList<Ingredient>) ois.readObject();
+			ois.close();
+		}
+	}
+	@SuppressWarnings("unchecked") // As I know what the ois.readObject() is going to throw;
+	public void loadTypes() throws ClassNotFoundException, IOException {
+		File ty = new File(TYPES_FILE);
+		if (ty.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ty));
+			types = (ArrayList<Type>) ois.readObject();
+			ois.close();
+		}
+	}
+	@SuppressWarnings("unchecked") // As I know what the ois.readObject() is going to throw;
+	public void loadUsers() throws ClassNotFoundException, IOException {
+		File us = new File(USERS_FILE);
+		if (us.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(us));
+			users = (ArrayList<User>) ois.readObject();
+			ois.close();
+		}
 	}
 	
 	public void addUser(String n, String ln, String id, String us, String pass) {
@@ -326,6 +437,4 @@ public class GoldenHouse {
 	public void setUsers(ArrayList<User> users) {
 		this.users = users;
 	}
-	
-	
 }

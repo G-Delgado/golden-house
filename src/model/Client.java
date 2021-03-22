@@ -1,6 +1,12 @@
 package model;
 
-public class Client extends Person{
+import java.io.Serializable;
+
+public class Client extends Person implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1;
 	private String address;
 	private String phoneNumber;
 	private String observations; /*Not much idea of what this is.*/

@@ -104,6 +104,11 @@ public class AddGUI extends GoldenHouseMainGUI{
 			int num = (int)(Math.random() * 100000);
 			String id = clientName.getText().substring(0,2) + clientLastName.getText().substring(0,2) + num;
 			gh.addClient(clientName.getText(), clientLastName.getText(), id, clientAddress.getText(), clientPhone.getText(), clientObservations.getText());
+			try {
+				gh.saveClients();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			// Didn't add the observations in the conditional as they shouldn't be mandatory
 		} else {
 			
@@ -129,6 +134,11 @@ public class AddGUI extends GoldenHouseMainGUI{
 	public void addIngredient(ActionEvent event) {
 		String ingredientName = ingredientTxt.getText();
 		gh.addIngredient(ingredientName, sessionUser);
+		try {
+			gh.saveIngredients();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -176,6 +186,11 @@ public class AddGUI extends GoldenHouseMainGUI{
 			arr.add(ig);
 		}
 		gh.addProduct(name, size, price, type, arr);
+		try {
+			gh.saveProducts();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
@@ -195,6 +210,11 @@ public class AddGUI extends GoldenHouseMainGUI{
 	public void addType(ActionEvent event) {
 		String typeName = typeTxt.getText();
 		gh.addType(typeName, sessionUser);
+		try {
+			gh.saveTypes();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

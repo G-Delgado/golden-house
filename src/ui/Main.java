@@ -1,5 +1,7 @@
 package ui;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +20,17 @@ public class Main extends Application{
 		ghGUI = new GoldenHouseGUI(gh, null);
 		
 		// We can also load the data
+		try {
+			// Client and user are not working
+			gh.loadProducts();
+			gh.loadClients();
+			gh.loadEmployees();
+			gh.loadIngredients();
+			gh.loadTypes();
+			gh.loadUsers();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {

@@ -236,6 +236,11 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 			arr.add(ig);
 		}
 		gh.editProduct(oldProductName, name, size, price, type, arr);
+		try {
+			gh.saveProducts();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		loadEdit(event);
 	}
 	
@@ -269,6 +274,12 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		String observations = editClientObservations.getText();
 		
 		gh.editClient(oldClientName, name, lastName, address, phone, observations);
+		try {
+			gh.saveClients();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		editClient(event);
 	}
 	
 	@FXML
@@ -293,6 +304,12 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 	public void finishIngredientEdit(ActionEvent event) {
 		String name = editIngredientName.getText();
 		gh.editIngredient(oldIngredientName, name, sessionUser);
+		try {
+			gh.saveIngredients();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		editIngredient(event);
 	}
 	
 	@FXML
@@ -317,6 +334,12 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 	public void finishTypeEdit(ActionEvent event) {
 		String name = editTypeName.getText();
 		gh.editType(oldTypeName, name, sessionUser);
+		try {
+			gh.saveTypes();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		editType(event);
 	}
 	
 	

@@ -83,6 +83,11 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 	public void finishProductDelete(ActionEvent event) {
 		String pr = deleteProductList.getSelectionModel().getSelectedItem();
 		gh.deleteProduct(pr);
+		try {
+			gh.saveProducts();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		loadDeleteProduct(event);
 	}
 	
@@ -111,6 +116,11 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 	public void finishClientDelete(ActionEvent event) {
 		String cl = deleteClientList.getSelectionModel().getSelectedItem();
 		gh.deleteClient(cl);
+		try {
+			gh.saveClients();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		loadDeleteClient(event);
 	}
 	
@@ -139,6 +149,11 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 	public void finishIngredientDelete(ActionEvent event) {
 		String ig = deleteIngredientList.getSelectionModel().getSelectedItem();
 		gh.deleteIngredient(ig);
+		try {
+			gh.saveIngredients();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		loadDeleteIngredient(event);
 	}
 	
@@ -167,6 +182,12 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 	public void finishTypeDelete(ActionEvent event) {
 		String ty = deleteTypeList.getSelectionModel().getSelectedItem();
 		gh.deleteType(ty);
+		try {
+			gh.saveTypes();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		loadDeleteType(event);
 	}
 	

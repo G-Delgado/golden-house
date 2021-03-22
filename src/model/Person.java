@@ -1,6 +1,12 @@
 package model;
 
-public abstract class Person { // Remember, Person is abstract
+import java.io.Serializable;
+
+public abstract class Person implements Serializable{ // Remember, Person is abstract
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1;
 	private String name;
 	private String lastName;
 	private String id;

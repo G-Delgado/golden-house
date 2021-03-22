@@ -131,6 +131,7 @@ public class GoldenHouseGUI {
 				id = registerName.getText().substring(0,2) + registerLastName.getText().substring(0,2) + num;
 				if (!id.equals("")) {
 					gh.addUser(registerName.getText(), registerLastName.getText(), id, registerUsername.getText(), registerPassword.getText());
+					gh.saveUsers();
 					loadMain(registerUsername.getText(), registerPassword.getText());					
 				}
 				System.out.println("\nId: " + id);
