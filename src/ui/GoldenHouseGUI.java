@@ -125,18 +125,18 @@ public class GoldenHouseGUI {
 		if (!registerUsername.getText().equals("") && !registerPassword.getText().equals("") && !registerName.getText().equals("") && !registerLastName.getText().equals("")) {
 			System.out.println("Epa, cuenta creada:" + "\nName: " + registerName.getText() + "\nLast name: " + registerLastName.getText() + "\nUsername: " + registerUsername.getText() + "\nPassword: " + registerPassword.getText());
 			int num = (int)(Math.random() * 100000);
-			String id = registerName.getText().substring(0,2) + registerLastName.getText().substring(0,2) + num;
-			// Validate that the id never repeats
-			gh.addUser(registerName.getText(), registerLastName.getText(), id, registerUsername.getText(), registerPassword.getText());
-			System.out.println("\nId: " + id);
-			try {
-				loadMain(registerUsername.getText(), registerPassword.getText());
-				/*registerUsername.setText("");
-				registerPassword.setText("");
-				registerName.setText("");
-				registerLastName.setText("");*/
+			String id = "";
+			try {				
+				id = registerName.getText().substring(0,2) + registerLastName.getText().substring(0,2) + num;
+				if (!id.equals("")) {
+					gh.addUser(registerName.getText(), registerLastName.getText(), id, registerUsername.getText(), registerPassword.getText());
+					loadMain(registerUsername.getText(), registerPassword.getText());					
+				}
+				System.out.println("\nId: " + id);
+			} catch (StringIndexOutOfBoundsException e ) {
+				warningLabel.setText("Las casillas tienen valores muy pequeños");
+				id = "";
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {

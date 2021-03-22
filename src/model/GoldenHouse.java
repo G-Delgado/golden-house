@@ -56,6 +56,22 @@ public class GoldenHouse {
 		return pos;
 	}
 
+	public void editIngredient(String n, String newN, User sessionUser) {
+		Ingredient ig = null;
+		for (int i = 0; i < ingredients.size() && ig == null; i++) {
+			if (ingredients.get(i).getName().equals(n)) {
+				ig = ingredients.get(i);
+			}
+		}
+		
+		System.out.println("\nBefore: " + ig.toString());
+		
+		ig.setName(newN);
+		ig.setLastModifiedBy(sessionUser);
+		
+		System.out.println("\nAfter: " + ig.toString());
+	}
+	
 	public void addType(String type, User createdBy) {
 		Type ty = new Type(type, createdBy);
 		types.add(ty);
@@ -80,6 +96,77 @@ public class GoldenHouse {
 		Product pr = new Product(n,s,p,type,ing);
 		products.add(pr);
 	}
+	
+	public Product getProductByName(String n) {
+		Product pr = null;
+		for (int i = 0; i < products.size(); i++) {
+			if (products.get(i).getName().equals(n)) {
+				pr = products.get(i);
+			}
+		}
+		
+		return pr;
+	}
+	
+	public void editProduct(String n, String newN, String s, double p, String ty, ArrayList<String> ig) {
+		Product pr = null;
+		for (int i = 0; i < products.size() && pr == null; i++) {
+			if (products.get(i).getName().equals(n)) {
+				pr = products.get(i);
+			}
+		}
+		
+		System.out.println("\nBefore: \n" + pr.toString());
+		
+		pr.setName(newN);
+		pr.setSize(s);
+		pr.setPrice(p);
+		Type type = null;
+		for (int i = 0; i < types.size(); i++) {
+			if (types.get(i).getName().equals(ty)) {
+				type = types.get(i);
+			}
+		}
+		pr.setType(type);
+		ArrayList<Ingredient> igs = new ArrayList<>();
+		for (int i = 0; i < ig.size(); i++) {
+			igs.add(ingredients.get(searchIngredientPos(ig.get(i))));
+		}
+		pr.setIngredients(igs);
+		
+		System.out.println("\nAfter: \n" + pr.toString());
+	}
+	
+	public Client getClientByName(String n) {
+		Client cl = null;
+		for (int i = 0; i < clients.size(); i++) {
+			if (clients.get(i).getName().equals(n)) {
+				cl = clients.get(i);
+			}
+		}
+		
+		return cl;
+	}
+	
+	public void editClient(String n, String newN, String ln, String ad, String pn, String obs) {
+		Client cl = null;
+		for (int i = 0; i < clients.size() && cl == null; i++) {
+			if (clients.get(i).getName().equals(n)) {
+				cl = clients.get(i);
+			}
+		}
+		
+		System.out.println("\nBefore: " + cl.toString());
+		
+		cl.setName(newN);
+		cl.setLastName(ln);
+		cl.setAddress(ad);
+		cl.setPhoneNumber(pn);
+		cl.setObservations(obs);
+		
+		System.out.println("\nAfter: " + cl.toString());
+	}
+	
 	
 	public void addClient(String n, String ln, String id, String address, String phone, String observations) {
 		Client cl = new Client(n,ln,id,address,phone,observations);

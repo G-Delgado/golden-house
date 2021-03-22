@@ -88,4 +88,22 @@ public class Product {
 		this.ingredients = ingredients;
 	}
 	
+	@Override
+	public String toString() {
+		String igs = "";
+		for (int i = 0; i < ingredients.size(); i++) {
+			if (i != ingredients.size() - 1) {
+				igs += ingredients.get(i).getName() + ", ";
+			} else {
+				igs += ingredients.get(i).getName();
+			}
+		}
+		String details = "Name: " + name + 
+				"\nSize: " + size + 
+				"\nPrice: " + price + 
+				"\nType: " + type.getName() + 
+				"\nIngredients: " + igs;
+		return details;
+	}
+	
 }
