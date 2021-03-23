@@ -24,6 +24,8 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 	
 	private DeleteGUI ghDeleteGUI;
 	
+	private EnableDisableGUI ghEnableDisable;
+	
 	// Main Pane
 	@FXML
 	private BorderPane mainPane;
@@ -37,6 +39,9 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 	
 	@FXML
 	private Button editSub;
+	
+	@FXML
+	private Button enableDisable;
 	
 	@FXML
 	private Button deleteSub;
@@ -99,6 +104,10 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 			fxmlLoader = new FXMLLoader(getClass().getResource("Edit.fxml"));
 			ghEditGUI = new EditGUI(gh, sessionUser, mainPane, ghPane);
 			fxmlLoader.setController(ghEditGUI);
+		} else if (event.getSource() == enableDisable) {
+			fxmlLoader = new FXMLLoader(getClass().getResource("EnableDisable.fxml"));
+			ghEnableDisable = new EnableDisableGUI(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane, ghPane);
+			fxmlLoader.setController(ghEnableDisable);
 		} else if (event.getSource() == deleteSub) {
 			fxmlLoader = new FXMLLoader(getClass().getResource("Delete.fxml"));
 			ghDeleteGUI = new DeleteGUI(gh, sessionUser, mainPane, ghPane);

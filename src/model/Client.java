@@ -6,7 +6,7 @@ public class Client extends Person implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1;
+	private static final long serialVersionUID = 2;
 	private String address;
 	private String phoneNumber;
 	private String observations; /*Not much idea of what this is.*/

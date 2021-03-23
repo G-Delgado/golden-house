@@ -6,15 +6,19 @@ public abstract class Person implements Serializable{ // Remember, Person is abs
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1;
+	private static final long serialVersionUID = 2;
 	private String name;
 	private String lastName;
 	private String id;
+	private User createdBy;
+	private User lastModifiedBy;
+	private boolean enabled;
 	
 	public Person(String name, String lastName, String id) {
 		this.setName(name);
 		this.setLastName(lastName);
 		this.setId(id);
+		setEnabled(true);
 	}
 
 	/**
@@ -57,6 +61,48 @@ public abstract class Person implements Serializable{ // Remember, Person is abs
 	 */
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the enabled
+	 */
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	/**
+	 * @param enabled the enabled to set
+	 */
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	/**
+	 * @return the createdBy
+	 */
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	/**
+	 * @param createdBy the createdBy to set
+	 */
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	/**
+	 * @return the lastModifiedBy
+	 */
+	public User getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	/**
+	 * @param lastModifiedBy the lastModifiedBy to set
+	 */
+	public void setLastModifiedBy(User lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
 	}
 	
 	

@@ -7,13 +7,16 @@ public class Product implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1;
+	private static final long serialVersionUID = 2;
 	private String name;
 	// Size will be a String for the moment
 	private String size;
 	private double price;
 	private Type type;
 	private ArrayList<Ingredient> ingredients;
+	private User createdBy;
+	private User lastModifiedBy;
+	private boolean enabled;
 	
 	public Product(String n, String s, double p, Type ty, ArrayList<Ingredient> ar) {
 		name = n;
@@ -109,6 +112,48 @@ public class Product implements Serializable{
 				"\nType: " + type.getName() + 
 				"\nIngredients: " + igs;
 		return details;
+	}
+
+	/**
+	 * @return the createdBy
+	 */
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	/**
+	 * @param createdBy the createdBy to set
+	 */
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	/**
+	 * @return the lastModifiedBy
+	 */
+	public User getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	/**
+	 * @param lastModifiedBy the lastModifiedBy to set
+	 */
+	public void setLastModifiedBy(User lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	/**
+	 * @return the enabled
+	 */
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	/**
+	 * @param enabled the enabled to set
+	 */
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 	
 }

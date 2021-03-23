@@ -6,7 +6,7 @@ public class Employee extends Person implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1;
+	private static final long serialVersionUID = 2;
 
 	public Employee(String n, String ln, String id) {
 		super(n, ln, id);

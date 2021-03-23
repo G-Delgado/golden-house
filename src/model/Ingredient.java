@@ -6,10 +6,11 @@ public class Ingredient implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1;
+	private static final long serialVersionUID = 2;
 	private String name;
 	private User createdBy;
 	private User lastModifiedBy;
+	private boolean enabled;
 	
 	public Ingredient(String name, User createdBy) {
 		this.name = name;
@@ -63,6 +64,20 @@ public class Ingredient implements Serializable{
 	public String toString() {
 		String details = "Name: " + name + "\nCreated by: " + createdBy.getUsername() + "\nLast modified by: " + lastModifiedBy.getUsername();
 		return details;
+	}
+
+	/**
+	 * @return the enabled
+	 */
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	/**
+	 * @param enabled the enabled to set
+	 */
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 
