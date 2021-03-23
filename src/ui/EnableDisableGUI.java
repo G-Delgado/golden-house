@@ -104,27 +104,58 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 					enableDisableProductList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 					
 				} else if (event.getSource() == employeeBtn) {
-					
+					ObservableList<String> employees = FXCollections.observableArrayList();
+					for (int i = 0; i < gh.getEmployees().size(); i++) {
+						employees.add(gh.getEmployees().get(i).getName());
+					}
+					enableDisableEmployeeList.setItems(employees);
+					enableDisableEmployeeList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 				} else if (event.getSource() == clientBtn) {
-					
+					ObservableList<String> clients = FXCollections.observableArrayList();
+					for (int i = 0; i < gh.getClients().size(); i++) {
+						clients.add(gh.getClients().get(i).getName());
+					}
+					enableDisableClientList.setItems(clients);
+					enableDisableClientList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 				} else if (event.getSource() == ingredientsBtn) {
-					 
+					ObservableList<String> ingredients = FXCollections.observableArrayList();
+					for (int i = 0; i < gh.getIngredients().size(); i++) {
+						ingredients.add(gh.getIngredients().get(i).getName());
+					}
+					enableDisableIngredientList.setItems(ingredients);
+					enableDisableIngredientList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 				} else if (event.getSource() == typesBtn) {
-					
+					ObservableList<String> types = FXCollections.observableArrayList();
+					for (int i = 0; i < gh.getTypes().size(); i++) {
+						types.add(gh.getTypes().get(i).getName());
+					}
+					enableDisableTypeList.setItems(types);
+					enableDisableTypeList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
+	
+	/*
+	 * 
+	 * DAR ALGUN MENSAJE PARA DAR A ENTENDER QUE FUE HABILITADO O DESHABILITADO.
+	 * 
+	 * */
 
 	@FXML
 	public void enableDisableProduct(ActionEvent event) {
 		String prName = enableDisableProductList.getSelectionModel().getSelectedItem();
 		if (event.getSource() == enable) {
-			
+			gh.enableDisableProduct(prName, true);		
 		} else if (event.getSource() == disable){
-			
+			gh.enableDisableProduct(prName, false);	
+		}
+		try {
+			gh.saveProducts();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -132,9 +163,14 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 	public void enableDisableEmployee(ActionEvent event) {
 		String emName = enableDisableEmployeeList.getSelectionModel().getSelectedItem();
 		if (event.getSource() == enable) {
-			
+			gh.enableDisableEmployee(emName, true);
 		} else if (event.getSource() == disable){
-			
+			gh.enableDisableEmployee(emName, false);
+		}
+		try {
+			gh.saveEmployees();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -142,9 +178,14 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 	public void enableDisableClient(ActionEvent event) {
 		String clName = enableDisableClientList.getSelectionModel().getSelectedItem();
 		if (event.getSource() == enable) {
-			
+			gh.enableDisableClient(clName, true);
 		} else if (event.getSource() == disable){
-			
+			gh.enableDisableClient(clName, false);
+		}
+		try {
+			gh.saveClients();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -152,9 +193,14 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 	public void enableDisableIngredient(ActionEvent event) {
 		String igName = enableDisableIngredientList.getSelectionModel().getSelectedItem();
 		if (event.getSource() == enable) {
-			
+			gh.enableDisableIngredient(igName, true);
 		} else if (event.getSource() == disable){
-			
+			gh.enableDisableIngredient(igName, false);
+		}
+		try {
+			gh.saveIngredients();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -162,9 +208,14 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 	public void enableDisableType(ActionEvent event) {
 		String tyName = enableDisableTypeList.getSelectionModel().getSelectedItem();
 		if (event.getSource() == enable) {
-			
+			gh.enableDisableType(tyName, true);
 		} else if (event.getSource() == disable){
-			
+			gh.enableDisableType(tyName, false);
+		}
+		try {
+			gh.saveTypes();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

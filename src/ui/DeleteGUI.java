@@ -87,13 +87,17 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 	@FXML
 	public void finishProductDelete(ActionEvent event) {
 		String pr = deleteProductList.getSelectionModel().getSelectedItem();
-		gh.deleteProduct(pr);
-		try {
-			gh.saveProducts();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (!gh.productIsUsed(pr)) {
+			gh.deleteProduct(pr);
+			try {
+				gh.saveProducts();
+				loadDeleteProduct(event);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			// Some warning label
 		}
-		loadDeleteProduct(event);
 	}
 	
 	@FXML
@@ -187,13 +191,17 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 	@FXML
 	public void finishIngredientDelete(ActionEvent event) {
 		String ig = deleteIngredientList.getSelectionModel().getSelectedItem();
-		gh.deleteIngredient(ig);
-		try {
-			gh.saveIngredients();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (!gh.ingredientIsUsed(ig)) {			
+			gh.deleteIngredient(ig);
+			try {
+				gh.saveIngredients();
+				loadDeleteIngredient(event);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			// Some warning label
 		}
-		loadDeleteIngredient(event);
 	}
 	
 	@FXML

@@ -187,11 +187,23 @@ public class GoldenHouse {
 		}
 	}
 	
+	public void enableDisableEmployee(String name, boolean isEnabled) {
+		Employee em = null;
+		for (int i = 0; i < employees.size() && em == null; i++) {
+			if (employees.get(i).getName().equals(name)) {
+				em = employees.get(i);
+			}
+		}
+		em.setEnabled(isEnabled);
+	}
+	
+	
 	public void addIngredient(String ingredient, User createdBy) {
 		Ingredient ig = new Ingredient(ingredient, createdBy);
 		ingredients.add(ig);
 		System.out.println(ig.toString());
 	}
+	
 	
 	public int searchIngredientPos(String igName) { // Me serviria un algoritmo de busqueda
 		int pos = -1;
@@ -229,11 +241,24 @@ public class GoldenHouse {
 		}
 	}
 	
+	
+	
 	public void addType(String type, User createdBy) {
 		Type ty = new Type(type, createdBy);
 		types.add(ty);
 		System.out.println(ty.toString());
 	}
+	
+	public void enableDisableType(String name, boolean isEnabled) {
+		Type ty = null;
+		for (int i = 0; i < types.size() && ty == null; i++) {
+			if (types.get(i).getName().equals(name)) {
+				ty = types.get(i);
+			}
+		}
+		ty.setEnabled(isEnabled);
+	}
+	
 	
 	public void editType(String n, String newN, User sessionUser) {
 		Type ty = null;
@@ -279,6 +304,7 @@ public class GoldenHouse {
 		Product pr = new Product(n,s,p,type,ing);
 		products.add(pr);
 	}
+	
 	
 	public Product getProductByName(String n) {
 		Product pr = null;
@@ -330,6 +356,37 @@ public class GoldenHouse {
 		}
 	}
 	
+	public void enableDisableProduct(String name, boolean isEnabled) {
+		Product pr = null;
+		for (int i = 0; i < products.size() && pr == null; i++) {
+			if (products.get(i).getName().equals(name)) {
+				pr = products.get(i);
+			}
+		}
+		pr.setEnabled(isEnabled);
+	}
+	
+	public boolean productIsUsed(String name) {
+		Product pr = null; 
+		for (int i = 0; i < products.size() && pr == null; i++) {
+			if (products.get(i).getName().equals(name)) {
+				pr = products.get(i);
+			}
+		}
+		
+		boolean found = false;
+		for (int i = 0; i < orders.size() && !found; i++) {
+			ArrayList<Product> orderProducts = orders.get(i).getProducts();
+			for (int j = 0; j < orderProducts.size() && !found; j++) {
+				if (pr.getName().equals(orderProducts.get(j).getName())) {
+					found = true;
+				}
+			}
+		}
+		
+		return found;
+	}
+	
 	public Client getClientByName(String n) {
 		Client cl = null;
 		for (int i = 0; i < clients.size(); i++) {
@@ -360,12 +417,44 @@ public class GoldenHouse {
 		System.out.println("\nAfter: " + cl.toString());
 	}
 	
+	public void enableDisableIngredient(String name, boolean isEnabled) {
+		Ingredient ig = null;
+		for (int i = 0; i < ingredients.size() && ig == null; i++) {
+			if (ingredients.get(i).getName().equals(name)) {
+				ig = ingredients.get(i);
+			}
+		}
+		ig.setEnabled(isEnabled);
+	}
+	
+	public boolean ingredientIsUsed(String name) {
+		Ingredient ig = null; 
+		for (int i = 0; i < ingredients.size() && ig == null; i++) {
+			if (ingredients.get(i).getName().equals(name)) {
+				ig = ingredients.get(i);
+			}
+		}
+		
+		boolean found = false;
+		for (int i = 0; i < products.size() && !found; i++) {
+			ArrayList<Ingredient> prIngredients = products.get(i).getIngredients();
+			for (int j = 0; j < prIngredients.size() && !found; j++) {
+				if (ig.getName().equals(prIngredients.get(j).getName())) {
+					found = true;
+				}
+			}
+		}
+		
+		return found;
+	}
+	
 	
 	public void addClient(String n, String ln, String id, String address, String phone, String observations) {
 		Client cl = new Client(n,ln,id,address,phone,observations);
 		clients.add(cl);
 		System.out.println("\n" + cl.toString() + "\n");
 	}
+	
 	
 	public void deleteClient(String name) {
 		boolean found = false;
@@ -376,6 +465,17 @@ public class GoldenHouse {
 			}
 		}
 	}
+	
+	public void enableDisableClient(String name, boolean isEnabled) {
+		Client cl = null;
+		for (int i = 0; i < clients.size() && cl == null; i++) {
+			if (clients.get(i).getName().equals(name)) {
+				cl = clients.get(i);
+			}
+		}
+		cl.setEnabled(isEnabled);
+	}
+	
 	/**
 	 * @return the products
 	 */

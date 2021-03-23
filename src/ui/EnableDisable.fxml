@@ -14,10 +14,10 @@
          </font>
       </Label>
       <Button fx:id="productBtn" mnemonicParsing="false" onAction="#loadEnableDisable" text="Hab/Des Producto" />
-      <Button fx:id="employeeBtn" mnemonicParsing="false" onAction="#loadEnableDisable" text="Hab/Des empleado" />
+      <Button fx:id="employeeBtn" mnemonicParsing="false" onAction="#loadEnableDisable" text="Hab/Des Empleado" />
       <Button fx:id="clientBtn" mnemonicParsing="false" onAction="#loadEnableDisable" text="Hab/Des Cliente" />
-      <Button fx:id="ingredientsBtn" mnemonicParsing="false" onAction="#loadEnableDisable" text="Hab/Des ingredientes" />
-      <Button fx:id="typesBtn" mnemonicParsing="false" onAction="#loadEnableDisable" text="Hab/Des tipos" />
+      <Button fx:id="ingredientsBtn" mnemonicParsing="false" onAction="#loadEnableDisable" text="Hab/Des Ingredientes" />
+      <Button fx:id="typesBtn" mnemonicParsing="false" onAction="#loadEnableDisable" text="Hab/Des Tipos" />
       <Button mnemonicParsing="false" onAction="#loadMenu" text="Regresar" />
    </children>
    <padding>

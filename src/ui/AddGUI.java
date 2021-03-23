@@ -201,7 +201,9 @@ public class AddGUI extends GoldenHouseMainGUI{
 		
 		ObservableList<String> listOptions = FXCollections.observableArrayList();
 		for (int i = 0; i < gh.getIngredients().size(); i++) {
-			listOptions.add(gh.getIngredients().get(i).getName());
+			if (gh.getIngredients().get(i).isEnabled()) {				
+				listOptions.add(gh.getIngredients().get(i).getName());
+			}
 		}
 		
 		ingredientsList.setItems(listOptions);

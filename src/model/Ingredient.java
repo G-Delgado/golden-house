@@ -16,6 +16,7 @@ public class Ingredient implements Serializable{
 		this.name = name;
 		this.setCreatedBy(createdBy);
 		setLastModifiedBy(createdBy);
+		setEnabled(true);
 	}
 
 	/**

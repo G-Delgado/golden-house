@@ -16,6 +16,7 @@ public class Type implements Serializable{
 		this.name = name;
 		this.setCreatedBy(createdBy);
 		this.setLastModifiedBy(createdBy);
+		setEnabled(true);
 	}
 
 	/**
