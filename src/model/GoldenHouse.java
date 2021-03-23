@@ -151,6 +151,16 @@ public class GoldenHouse {
 		}
 	}
 	
+	public Order getOrderByCode(String orderCode) {
+		Order order = null;
+		for (int i = 0; i < orders.size() && order == null; i++) {
+			if (orders.get(i).getCode().equals(orderCode)) {
+				order = orders.get(i);
+			}
+		}
+		return order;
+	}
+	
 	
 	public void addOrder(String cl, String em, ArrayList<String[]> productsList, LocalDate date, LocalTime time, String obs, User sessionUser) {
 		// Crear codigo
@@ -182,6 +192,28 @@ public class GoldenHouse {
 		orders.add(order);
 		
 		System.out.println("\nOrder" + order.toString());
+	}
+	
+	public boolean changeStateOfOrder(String orderCode, int statePos) {
+		boolean changed = false;
+		Order order = getOrderByCode(orderCode);
+		switch (statePos) {
+			case 1:
+				changed = order.setState(State.INPROCESS);
+				break;
+			case 2:
+				changed = order.setState(State.SENT);
+				break;
+			case 3:
+				changed = order.setState(State.DELIVERED);
+				break;
+		}
+		
+		return changed;
+	}
+	
+	public void editOrder() {
+		
 	}
 	
 	public void addUser(String n, String ln, String id, String us, String pass) {

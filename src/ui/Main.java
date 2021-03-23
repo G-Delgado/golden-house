@@ -28,6 +28,7 @@ public class Main extends Application{
 			gh.loadIngredients();
 			gh.loadTypes();
 			gh.loadUsers();
+			gh.loadOrders();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="458.0" spacing="15.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Orders" textFill="#e4d290">
+         <font>
+            <Font name="Franklin Gothic Heavy" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="15.0" />
+         </VBox.margin>
+      </Label>
+      <TableView fx:id="orderTable" prefHeight="200.0" prefWidth="200.0">
+         <columns>
+            <TableColumn fx:id="tcCode" prefWidth="75.0" text="Code" />
+            <TableColumn fx:id="tcState" prefWidth="75.0" text="State" />
+            <TableColumn fx:id="tcCName" prefWidth="86.0" text="Client" />
+            <TableColumn fx:id="tcEName" prefWidth="119.0" text="Employee" />
+            <TableColumn fx:id="tcObservations" prefWidth="102.0" text="Observations" />
+         </columns>
+      </TableView>
+      <HBox alignment="CENTER" prefHeight="36.0" prefWidth="458.0" spacing="20.0">
+         <children>
+            <Button fx:id="inProcessBtn" mnemonicParsing="false" onAction="#finishModifyState" text="En proceso" />
+            <Button fx:id="sentBtn" mnemonicParsing="false" onAction="#finishModifyState" text="Enviado" />
+            <Button fx:id="deliveredBtn" mnemonicParsing="false" onAction="#finishModifyState" text="Entregado" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
