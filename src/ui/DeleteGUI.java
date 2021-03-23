@@ -20,11 +20,11 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 	
 	private GoldenHouse gh;
 		
-	private User sessionUser;
+	//private User sessionUser; // Check this warning
 		
 	// Panes
 		
-	private BorderPane mainPane;
+	//private BorderPane mainPane; // Check this warning
 		
 	private StackPane ghPane;
 	
@@ -58,8 +58,8 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 	public DeleteGUI(GoldenHouse gh, User sessionUser, BorderPane mainPane, StackPane ghPane) {
 		super(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane);
 		this.gh = gh;
-		this.sessionUser = sessionUser;
-		this.mainPane = mainPane;
+		//this.sessionUser = sessionUser;
+		//this.mainPane = mainPane;
 		this.ghPane = ghPane;
 	}
 	

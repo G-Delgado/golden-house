@@ -28,7 +28,7 @@ public class AddGUI extends GoldenHouseMainGUI{
 	
 	// Panes
 	
-	private BorderPane mainPane; // Not used in the add option
+	//private BorderPane mainPane; // Check this warning
 	
 	private StackPane ghPane;
 	
@@ -87,7 +87,7 @@ public class AddGUI extends GoldenHouseMainGUI{
 		super(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane);
 		this.gh = gh;
 		this.sessionUser = sessionUser;
-		this.mainPane = mainPane;
+		//this.mainPane = mainPane;
 		this.ghPane = ghPane;
 	}
 	

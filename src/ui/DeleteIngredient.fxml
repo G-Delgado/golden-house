@@ -28,6 +28,6 @@
          </children>
       </HBox>
       <ListView fx:id="deleteIngredientList" prefHeight="200.0" prefWidth="200.0" />
-      <Button mnemonicParsing="false" onAction="#finishIngredientDelete" text="Editar" />
+      <Button mnemonicParsing="false" onAction="#finishIngredientDelete" text="Eliminar" />
    </children>
 </VBox>

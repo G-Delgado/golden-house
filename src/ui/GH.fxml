@@ -23,6 +23,7 @@
             </Label>
             <Button fx:id="addSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Agregar" />
             <Button fx:id="editSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Editar" />
+            <Button fx:id="listSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Listar" />
             <Button fx:id="enableDisable" mnemonicParsing="false" onAction="#loadSubMenu" text="Habilitar/Deshabilitar" />
             <Button fx:id="deleteSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Eliminar" />
             <Button mnemonicParsing="false" text="Generar reportes" />
