@@ -112,7 +112,7 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 			
 			ObservableList<String> options = FXCollections.observableArrayList();
 			for (int i = 0; i < gh.getClients().size(); i++) {
-				options.add(gh.getClients().get(i).getName());
+				options.add(gh.getClients().get(i).getName() + " " + gh.getClients().get(i).getLastName());
 			}
 			deleteClientList.setItems(options);
 			deleteClientList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -145,7 +145,7 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 			
 			ObservableList<String> options = FXCollections.observableArrayList();
 			for (int i = 0; i < gh.getEmployees().size(); i++) {
-				options.add(gh.getEmployees().get(i).getName());
+				options.add(gh.getEmployees().get(i).getName() + " " + gh.getEmployees().get(i).getLastName());
 			}
 			deleteEmployeeList.setItems(options);
 			deleteEmployeeList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

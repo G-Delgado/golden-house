@@ -7,11 +7,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class GoldenHouse {
 	// Constants
-	
+	public static final String ORDERS_FILE = "data/orders.gh";
 	public static final String PRODUCTS_FILE = "data/products.gh";
 	public static final String CLIENTS_FILE = "data/clients.gh";
 	public static final String EMPLOYEES_FILE = "data/employees.gh";
@@ -36,6 +38,13 @@ public class GoldenHouse {
 		clients = new ArrayList<>();
 		employees = new ArrayList<>();
 		users = new ArrayList<>();
+	}
+	
+	public void saveOrders() throws FileNotFoundException, IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ORDERS_FILE));
+		oos.writeObject(orders);
+		oos.close();
+		
 	}
 	
 	public void saveProducts() throws FileNotFoundException, IOException {
@@ -73,6 +82,16 @@ public class GoldenHouse {
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(USERS_FILE));
 		oos.writeObject(users);
 		oos.close();
+	}
+	
+	@SuppressWarnings("unchecked") // As I know what the ois.readObject() is going to throw;
+	public void loadOrders() throws ClassNotFoundException, IOException {
+		File or = new File(ORDERS_FILE);
+		if (or.exists()) {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(or));
+			orders = (ArrayList<Order>) ois.readObject();
+			ois.close();
+		}
 	}
 	
 	@SuppressWarnings("unchecked") // As I know what the ois.readObject() is going to throw;
@@ -132,6 +151,39 @@ public class GoldenHouse {
 		}
 	}
 	
+	
+	public void addOrder(String cl, String em, ArrayList<String[]> productsList, LocalDate date, LocalTime time, String obs, User sessionUser) {
+		// Crear codigo
+		int num = (int)(Math.random() * 100000);
+		String code = cl.substring(0,2) + em.substring(0,2) + num;
+		// Crear estado
+		State state = State.REQUESTED;
+		
+		// Client
+		Client client = getClientByName(cl);
+		
+		// Employee
+		Employee employee = getEmployeeByName(em);
+		String print = "";
+		ArrayList<Product> orderProducts = new ArrayList<>();
+		Product pr = null;
+		for (int i = 0; i  < productsList.size(); i++) {
+			for (int j = 0; j < Integer.parseInt(productsList.get(i)[1]); j++) {				
+				pr = getProductByName(productsList.get(i)[0]);
+				orderProducts.add(pr);
+				print += pr.getName() + ", ";
+			}
+		}
+		
+		System.out.println(print);
+		
+		// Podemos pasar el sessionUser.
+		Order order = new Order(code, state, orderProducts, client, employee, date, time, obs, sessionUser);
+		orders.add(order);
+		
+		System.out.println("\nOrder" + order.toString());
+	}
+	
 	public void addUser(String n, String ln, String id, String us, String pass) {
 		User mockUser = new User(n,ln,id,us,pass);
 		// Recordar que deben agregarse de forma ORDENADA!!!!!!!
@@ -159,7 +211,7 @@ public class GoldenHouse {
 	public Employee getEmployeeByName(String name) {
 		Employee em = null;
 		for (int i = 0; i < employees.size() && em == null; i++) {
-			if (employees.get(i).getName().equals(name)) {
+			if ((employees.get(i).getName() + " " + employees.get(i).getLastName()).equals(name)) {
 				em = employees.get(i);
 			}
 		}
@@ -390,7 +442,7 @@ public class GoldenHouse {
 	public Client getClientByName(String n) {
 		Client cl = null;
 		for (int i = 0; i < clients.size(); i++) {
-			if (clients.get(i).getName().equals(n)) {
+			if ((clients.get(i).getName() + " " + clients.get(i).getLastName()).equals(n)) {
 				cl = clients.get(i);
 			}
 		}

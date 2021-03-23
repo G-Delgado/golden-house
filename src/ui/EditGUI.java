@@ -177,7 +177,7 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 			} else if (event.getSource() == editClientBtn) {
 				ObservableList<String> clients = FXCollections.observableArrayList();
 				for (int i = 0; i < gh.getClients().size(); i++) {
-					clients.add(gh.getClients().get(i).getName());
+					clients.add(gh.getClients().get(i).getName() + " " + gh.getClients().get(i).getLastName());
 				}
 				clientList.setItems(clients);
 				clientList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -185,7 +185,7 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 			} else if (event.getSource() == editEmployeeBtn) {
 				ObservableList<String> employees = FXCollections.observableArrayList();
 				for (int i = 0; i < gh.getEmployees().size(); i++) {
-					employees.add(gh.getEmployees().get(i).getName());
+					employees.add(gh.getEmployees().get(i).getName() + " " + gh.getClients().get(i).getLastName());
 				}
 				employeesList.setItems(employees);
 				employeesList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

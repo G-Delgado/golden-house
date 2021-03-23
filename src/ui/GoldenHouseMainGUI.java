@@ -18,6 +18,8 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 	
 	private User sessionUser;
 	
+	private OrderGUI ghOrderGUI;
+	
 	private AddGUI ghAddGUI;
 	
 	private EditGUI ghEditGUI;
@@ -35,6 +37,9 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 	// GH
 	@FXML
 	private StackPane ghPane;
+	
+	@FXML
+	private Button orderSub;
 	
 	@FXML
 	private Button addSub;
@@ -65,6 +70,10 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 		this.sessionUser = gh.getUsers().get(pos);
 		mainPane = mp;
 		System.out.println(sessionUser.toString());
+	}
+	
+	public User getSessionUser() {
+		return sessionUser;
 	}
 	
 	@FXML
@@ -101,7 +110,11 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 	@FXML
 	public void loadSubMenu(ActionEvent event) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(""));;
-		if (event.getSource() == addSub) {
+		if (event.getSource() == orderSub) {
+			fxmlLoader = new FXMLLoader(getClass().getResource("OrderMenu.fxml"));
+			ghOrderGUI = new OrderGUI(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane, ghPane);
+			fxmlLoader.setController(ghOrderGUI);
+		} else if (event.getSource() == addSub) {
 			fxmlLoader = new FXMLLoader(getClass().getResource("Add.fxml"));
 			ghAddGUI = new AddGUI(gh, sessionUser, mainPane, ghPane);
 			fxmlLoader.setController(ghAddGUI);
@@ -133,5 +146,6 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 		}
 		
 	}
+	
 	
 }

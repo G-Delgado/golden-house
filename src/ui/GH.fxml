@@ -21,6 +21,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
+            <Button fx:id="orderSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Pedidos" />
             <Button fx:id="addSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Agregar" />
             <Button fx:id="editSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Editar" />
             <Button fx:id="listSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Listar" />

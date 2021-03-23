@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="397.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Añade un nuevo pedido" textFill="#e4d290">
+         <font>
+            <Font name="Franklin Gothic Heavy" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="15.0" />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="31.0" prefWidth="600.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Cliente" textFill="#e4d290" />
+                  <ComboBox fx:id="clientField" prefWidth="150.0" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Empleado a cargo" textFill="#e4d290">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ComboBox fx:id="employeeField" prefWidth="150.0" />
+               </children>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="31.0" prefWidth="600.0">
+         <children>
+            <Label text="Productos" textFill="#e4d290">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <ComboBox fx:id="productField" prefWidth="150.0" />
+            <TextField fx:id="productQuantityField" prefHeight="25.0" prefWidth="86.0" promptText="Cantidad">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#addProductToOrder" text="Agregar">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" prefHeight="143.0" prefWidth="223.0">
+         <children>
+            <Label text="Observaciones" textFill="#e4d290" />
+            <TextArea fx:id="observationsField" prefHeight="114.0" prefWidth="224.0" />
+         </children>
+      </VBox>
+      <Button mnemonicParsing="false" onAction="#finishAddOrder" text="Añadir" />
+   </children>
+</VBox>
