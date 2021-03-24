@@ -26,6 +26,8 @@ import model.Order;
 
 public class OrderGUI extends GoldenHouseMainGUI{
 	
+	// Comment just to be able to commit
+	
 	private GoldenHouse gh;
 	
 	private StackPane ghPane;
