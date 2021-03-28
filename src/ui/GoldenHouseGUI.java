@@ -51,6 +51,15 @@ public class GoldenHouseGUI {
 	
 	// Recover ---
 	
+	@FXML
+	private TextField recoverUsername;
+	
+	@FXML
+	private TextField newPassword;
+	
+	@FXML
+	private TextField repeatPassword;
+	
 	public GoldenHouseGUI(GoldenHouse gh, BorderPane mp) {
 		mainPane = mp;
 		this.gh = gh;
@@ -153,5 +162,27 @@ public class GoldenHouseGUI {
 		login = fxmlLoader.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(login);
+	}
+	
+	public void recover(ActionEvent event) {
+		String username = recoverUsername.getText();
+		int isUser = gh.isUser(username);
+		if (isUser != -1) {
+			String password = newPassword.getText();
+			String confirmPassword = repeatPassword.getText();
+			if (password.equals(confirmPassword) && !password.equals("") && !confirmPassword.equals("")) {
+				gh.changeUserPassword(username, confirmPassword);
+				warningLabel.setText("");
+				try {
+					loadMain(username, password);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else {
+				warningLabel.setText("Las contraseñas no coinciden");
+			}
+		} else {
+			warningLabel.setText("Este usuario no existe");
+		}
 	}
 }

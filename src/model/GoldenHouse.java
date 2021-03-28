@@ -235,6 +235,23 @@ public class GoldenHouse {
 		return pos;
 	}
 	
+	public int isUser(String username) {
+		int pos = -1;
+		for (int i = 0; i < users.size() && pos == -1; i++) {
+			if (users.get(i).getUsername().equals(username)) {
+				pos = i;
+			}
+		}
+		return pos;
+	}
+	
+	public void changeUserPassword (String username, String newPassword) {
+		User user = users.get(isUser(username));
+		System.out.println("Before: " + user.toString());
+		user.setPassword(newPassword);
+		System.out.println("After: " + user.toString());
+	}
+	
 	public void addEmployee(String name, String lastName, String id) {
 		Employee em = new Employee(name, lastName, id);
 		employees.add(em);
