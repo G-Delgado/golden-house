@@ -63,7 +63,7 @@ public class Type implements Serializable{
 	
 	@Override
 	public String toString() {
-		String details = "Name: " + name + "\nCreated by: " + createdBy.getUsername() + "\nLast modified by: " + lastModifiedBy.getUsername();
+		String details = "Name: " + name; /*+ "\nCreated by: " + createdBy.getUsername() + "\nLast modified by: " + lastModifiedBy.getUsername();*/
 		return details;
 	}
 

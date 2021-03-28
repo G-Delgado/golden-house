@@ -28,6 +28,8 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 	
 	private DeleteGUI ghDeleteGUI;
 	
+	private ReportGUI ghReportGUI;
+	
 	private EnableDisableGUI ghEnableDisable;
 	
 	// Main Pane
@@ -55,6 +57,9 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 	
 	@FXML
 	private Button deleteSub;
+	
+	@FXML
+	private Button reportSub;
 	
 	
 	@FXML
@@ -134,6 +139,10 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 			fxmlLoader = new FXMLLoader(getClass().getResource("Delete.fxml"));
 			ghDeleteGUI = new DeleteGUI(gh, sessionUser, mainPane, ghPane);
 			fxmlLoader.setController(ghDeleteGUI);
+		} else if (event.getSource() == reportSub) {
+			fxmlLoader = new FXMLLoader(getClass().getResource("Reports/Reports.fxml"));
+			ghReportGUI = new ReportGUI(gh, sessionUser, mainPane, ghPane);
+			fxmlLoader.setController(ghReportGUI);
 		}
 		
 		Parent subMenu;

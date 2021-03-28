@@ -78,7 +78,6 @@ public class GoldenHouseGUI {
 		/*Stage stage = (Stage) mainPane.getScene().getWindow();
 		stage.setHeight(400);
 		stage.setWidth(544);*/
-		
 	}
 	
 	@FXML

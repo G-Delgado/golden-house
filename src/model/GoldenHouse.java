@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GoldenHouse {
 	// Constants
@@ -342,6 +343,20 @@ public class GoldenHouse {
 		}
 	}
 	
+	public void sortIngredients() {
+		System.out.println(Arrays.toString(ingredients.toArray()));
+		for (int i = 0; i < ingredients.size(); i++) {
+			for (int j = i + 1; j < ingredients.size(); j++) {
+				if (ingredients.get(i).getName().compareTo(ingredients.get(j).getName()) > 0) {
+					Ingredient temp = ingredients.get(i);
+					ingredients.set(i, ingredients.get(j));
+					ingredients.set(j, temp);
+				}
+			}
+		}
+		System.out.println(Arrays.toString(ingredients.toArray()));
+	}
+	
 	
 	
 	public void addType(String type, User createdBy) {
@@ -385,6 +400,18 @@ public class GoldenHouse {
 				found = true;
 			}
 		}
+	}
+	
+	public void sortTypes() {
+		System.out.println(Arrays.toString(types.toArray()));
+		for (int i = 1; i < types.size(); i++) {
+			for (int j = i; j > 0 && types.get(j).getName().compareTo(types.get(j-1).getName()) < 0; j--) {
+				Type temp = types.get(j);
+				types.set(j, types.get(j-1));
+				types.set(j-1,temp);
+			}
+		}
+		System.out.println(Arrays.toString(types.toArray()));
 	}
 	
 	public void addProduct(String n, String s, double p, String ty, ArrayList<String> ig) {

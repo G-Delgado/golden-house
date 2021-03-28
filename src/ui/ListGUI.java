@@ -204,6 +204,7 @@ public class ListGUI extends GoldenHouseMainGUI{
 	}
 	
 	public void initializeIngredientTable() {
+		gh.sortIngredients();
 		ObservableList<Ingredient> ingredients = FXCollections.observableArrayList(gh.getIngredients());
 		
 		ingredientTable.setItems(ingredients);
@@ -213,6 +214,7 @@ public class ListGUI extends GoldenHouseMainGUI{
 	}
 	
 	public void initializeTypeTable() {
+		gh.sortTypes();
 		ObservableList<Type> types = FXCollections.observableArrayList(gh.getTypes());
 		
 		typeTable.setItems(types);
