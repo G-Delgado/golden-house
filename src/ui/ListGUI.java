@@ -182,7 +182,8 @@ public class ListGUI extends GoldenHouseMainGUI{
 		
 	}
 	
-	public void initializeEmployeeTable() { 
+	public void initializeEmployeeTable() {
+		gh.sortEmployees();
 		ObservableList<Employee> employees = FXCollections.observableArrayList(gh.getEmployees());
 		
 		employeeTable.setItems(employees);

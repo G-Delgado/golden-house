@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GoldenHouse {
 	// Constants
@@ -255,6 +257,11 @@ public class GoldenHouse {
 		System.out.println("After: " + user.toString());
 	}
 	
+	public void sortUsers() {
+		Comparator<User> UserUsernameIdComparator = new UserUsernameIdComparator();
+		Collections.sort(users, UserUsernameIdComparator);
+	}
+	
 	public void addEmployee(String name, String lastName, String id) {
 		Employee em = new Employee(name, lastName, id);
 		employees.add(em);
@@ -299,6 +306,10 @@ public class GoldenHouse {
 			}
 		}
 		em.setEnabled(isEnabled);
+	}
+	
+	public void sortEmployees() {
+		Collections.sort(employees);
 	}
 	
 	public void addIngredient(String ingredient, User createdBy) {
