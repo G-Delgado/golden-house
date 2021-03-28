@@ -124,7 +124,8 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 	@FXML
 	public void finishClientDelete(ActionEvent event) {
 		String cl = deleteClientList.getSelectionModel().getSelectedItem();
-		gh.deleteClient(cl);
+		String[] clArr = cl.split(" ");
+		gh.deleteClient(clArr[0], clArr[1]);
 		try {
 			gh.saveClients();
 		} catch (IOException e) {

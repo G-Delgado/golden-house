@@ -124,6 +124,7 @@ public class GoldenHouse {
 			ois.close();
 		}
 	}
+	
 	@SuppressWarnings("unchecked") // As I know what the ois.readObject() is going to throw;
 	public void loadIngredients() throws ClassNotFoundException, IOException {
 		File ig = new File(INGREDIENTS_FILE);
@@ -133,6 +134,7 @@ public class GoldenHouse {
 			ois.close();
 		}
 	}
+	
 	@SuppressWarnings("unchecked") // As I know what the ois.readObject() is going to throw;
 	public void loadTypes() throws ClassNotFoundException, IOException {
 		File ty = new File(TYPES_FILE);
@@ -142,6 +144,7 @@ public class GoldenHouse {
 			ois.close();
 		}
 	}
+	
 	@SuppressWarnings("unchecked") // As I know what the ois.readObject() is going to throw;
 	public void loadUsers() throws ClassNotFoundException, IOException {
 		File us = new File(USERS_FILE);
@@ -161,7 +164,6 @@ public class GoldenHouse {
 		}
 		return order;
 	}
-	
 	
 	public void addOrder(String cl, String em, ArrayList<String[]> productsList, LocalDate date, LocalTime time, String obs, User sessionUser) {
 		// Crear codigo
@@ -299,13 +301,11 @@ public class GoldenHouse {
 		em.setEnabled(isEnabled);
 	}
 	
-	
 	public void addIngredient(String ingredient, User createdBy) {
 		Ingredient ig = new Ingredient(ingredient, createdBy);
 		ingredients.add(ig);
 		System.out.println(ig.toString());
 	}
-	
 	
 	public int searchIngredientPos(String igName) { // Me serviria un algoritmo de busqueda
 		int pos = -1;
@@ -357,8 +357,6 @@ public class GoldenHouse {
 		System.out.println(Arrays.toString(ingredients.toArray()));
 	}
 	
-	
-	
 	public void addType(String type, User createdBy) {
 		Type ty = new Type(type, createdBy);
 		types.add(ty);
@@ -374,7 +372,6 @@ public class GoldenHouse {
 		}
 		ty.setEnabled(isEnabled);
 	}
-	
 	
 	public void editType(String n, String newN, User sessionUser) {
 		Type ty = null;
@@ -432,7 +429,6 @@ public class GoldenHouse {
 		Product pr = new Product(n,s,p,type,ing);
 		products.add(pr);
 	}
-	
 	
 	public Product getProductByName(String n) {
 		Product pr = null;
@@ -577,17 +573,25 @@ public class GoldenHouse {
 	}
 	
 	
+	// Arreglar la parte de insertarlos ordenadamente :")
 	public void addClient(String n, String ln, String id, String address, String phone, String observations) {
 		Client cl = new Client(n,ln,id,address,phone,observations);
-		clients.add(cl);
+		if (clients.isEmpty()) {
+			clients.add(cl);
+		} else {			
+			int i = 0;
+			while (i < clients.size() && (clients.get(i).getLastName().compareTo(cl.getLastName()) < 0)) {
+				i++;
+			}
+			clients.add(i, cl);
+		}
 		System.out.println("\n" + cl.toString() + "\n");
 	}
 	
-	
-	public void deleteClient(String name) {
+	public void deleteClient(String name, String lastName) {
 		boolean found = false;
 		for (int i = 0; i < clients.size() && !found; i++) {
-			if (clients.get(i).getName().equals(name)) {
+			if (clients.get(i).getName().equals(name) && clients.get(i).getLastName().equals(lastName)) {
 				clients.remove(i);
 				found = true;
 			}

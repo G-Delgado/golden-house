@@ -38,7 +38,7 @@ public class User extends Employee implements Serializable{
 	
 	@Override
 	public String toString() {
-		String details = "Username: " + username + "\nPassword: " + password;
+		String details = /*"Username: " +*/ username; /*+ "\nPassword: " + password;*/
 		// Remember, he also has the attributes of name, lastName, id.
 		return details;
 		

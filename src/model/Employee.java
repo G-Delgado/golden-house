@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Employee extends Person implements Serializable{
+public class Employee extends Person implements Serializable, Comparable<Employee>{
 	/**
 	 * 
 	 */
@@ -10,5 +10,10 @@ public class Employee extends Person implements Serializable{
 
 	public Employee(String n, String ln, String id) {
 		super(n, ln, id);
+	}
+
+	@Override
+	public int compareTo(Employee o) {
+		return getName().compareTo(o.getName());
 	}
 }
