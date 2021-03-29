@@ -77,6 +77,22 @@ public class Order implements Serializable{
 		return changed;
  	}
 	
+	public long getTotalPrice() {
+		long result = 0;
+		for (int i = 0; i < products.size(); i++) {
+			result += products.get(i).getPrice();
+		}
+		return result;
+	}
+	
+	public boolean isEmployee(Employee em) {
+		boolean found = false;
+		if (employee.getName().equals(em.getName()) && employee.getLastName().equals(em.getLastName())) {
+			found = true;
+		}
+		return found;
+	}
+	
 	/**
 	 * @return the products
 	 */

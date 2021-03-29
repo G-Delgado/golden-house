@@ -81,6 +81,14 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 		return sessionUser;
 	}
 	
+	public BorderPane getMainPane() {
+		return mainPane;
+	}
+	
+	public GoldenHouse getGH() {
+		return gh;
+	}
+	
 	@FXML
 	public void loadMenu(ActionEvent event) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GH.fxml"));

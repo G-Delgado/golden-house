@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -124,6 +125,11 @@ public class ListGUI extends GoldenHouseMainGUI{
 	@FXML
 	private TableColumn<Type, String> typeModifiedByColumn;
 	
+	// ---------------
+	
+	@FXML
+	private TextField editIngredientName;
+	
 	public ListGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp, StackPane ghPane) {
 		super(goldenHouse, username, password, mp);
 		this.gh = goldenHouse;
@@ -223,8 +229,32 @@ public class ListGUI extends GoldenHouseMainGUI{
 				String nameStuff = ingredientTable.getSelectionModel().getSelectedItem().getName();
 				System.out.println("Double clicked!");
 				System.out.println(nameStuff);
+				loadEdit();
 			}
 		}
+	}
+
+	
+	public void loadEdit() { // Hasta ahora solo carga el fxml de ingredient y no lleva el ingrediente como tal
+		String name = ingredientTable.getSelectionModel().getSelectedItem().getName();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditOneIngredient.fxml"));
+		ListEditGUI listEditGUI = new ListEditGUI(gh, getSessionUser(), getMainPane(), ghPane);
+		fxmlLoader.setController(listEditGUI);
+		
+		try {
+			Parent edit = fxmlLoader.load();
+			ghPane.getChildren().clear();
+			ghPane.getChildren().setAll(edit);
+			editIngredientName.setText(name);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@FXML
+	public void finishIngredientEdit(ActionEvent event) {
+		
 	}
 	
 	public void initializeTypeTable() {

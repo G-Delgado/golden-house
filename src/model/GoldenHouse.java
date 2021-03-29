@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class GoldenHouse {
 	public static final String INGREDIENTS_FILE = "data/ingredients.gh";
 	public static final String TYPES_FILE = "data/types.gh";
 	public static final String USERS_FILE = "data/users.gh";
+	public static final String REPORT_FILE = "data/report.txt";
 	
 	// Attributes
 	private ArrayList<Product> products;
@@ -41,6 +43,34 @@ public class GoldenHouse {
 		clients = new ArrayList<>();
 		employees = new ArrayList<>();
 		users = new ArrayList<>();
+	}
+	
+	public void generateReport(String type, LocalDate iDate, LocalTime iTime, LocalDate eDate, LocalTime eTime, String separator) throws FileNotFoundException {
+		if (type.equals("Orders")) {
+			System.out.println("Pedidos!!");
+			
+		} else if (type.equals("Employees")) {
+			System.out.println("Empleadosss!!");
+			PrintWriter pw = new PrintWriter(REPORT_FILE);
+			for (int i = 0; i < employees.size(); i++) {
+				Employee em = employees.get(i);
+				int ordersCont = 0;
+				long totalPrice = 0;
+				System.out.println(orders.size() + " Tamaño\n");
+				for (int j = 0; j < orders.size(); j++) {
+					if (orders.get(j).isEmployee(em)) {
+						System.out.println("Im inside");
+						ordersCont++;
+						totalPrice += orders.get(i).getTotalPrice();
+					}
+				}
+				System.out.println(ordersCont + " Conteo.  \n" + totalPrice + " Precio total");
+				pw.println(em.getName() + " " + em.getLastName() + separator + ordersCont + separator + totalPrice);
+			}
+			pw.close();
+		} else if (type.equals("Products")) {
+			System.out.println("Productoss!!");
+		}
 	}
 	
 	public void saveOrders() throws FileNotFoundException, IOException {

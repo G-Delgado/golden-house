@@ -17,29 +17,23 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import model.GoldenHouse; // Podría ahorrarme el importar siempre si uso un extends para cada controller
-import model.User;  // Podría ahorrarme el importar siempre si uso un extends para cada controller
+import model.GoldenHouse;
+import model.User;
 
-public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importar siempre si uso un extends para cada controller
-	
-	// Model
-	
-	private GoldenHouse gh;
+public class ListEditGUI extends ListGUI{
 	
 	private User sessionUser;
 	
-	
-	// Main pane
+	private GoldenHouse gh;
 	
 	@FXML
 	private BorderPane mainPane;
 	
-	// Gh Main Pane
-	
 	@FXML
 	private StackPane ghPane;
 	
-
+	// -----------------------------------------
+	
 	@FXML
 	private Button editProductBtn;
 	
@@ -137,79 +131,17 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 	private String oldTypeName;
 	
 	
-	// Constructor --------------------
-	public EditGUI(GoldenHouse gh, User sessionUser, BorderPane mainPane, StackPane ghPane) {
-		super(gh,sessionUser.getUsername(), sessionUser.getPassword(), mainPane);
+	
+	public ListEditGUI(GoldenHouse gh, User sessionUser, BorderPane mainPane, StackPane ghPane) {
+		super(gh,sessionUser.getUsername(), sessionUser.getPassword(), mainPane, ghPane);
 		this.gh = gh;
 		this.sessionUser = sessionUser;
 		this.mainPane = mainPane;
 		this.ghPane = ghPane;
 	}
 	
-	@FXML
-	public void loadEdit(ActionEvent event) {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(""));
-		if (event.getSource() == editProductBtn) {
-			fxmlLoader = new FXMLLoader(getClass().getResource("EditProduct.fxml"));	
-		} else if (event.getSource() == editClientBtn) {
-			fxmlLoader = new FXMLLoader(getClass().getResource("EditClient.fxml"));
-		} else if (event.getSource() == editEmployeeBtn) {
-			fxmlLoader = new FXMLLoader(getClass().getResource("EditEmployee.fxml"));
-		} else if (event.getSource() == editIngredientBtn) {
-			fxmlLoader = new FXMLLoader(getClass().getResource("EditIngredient.fxml"));
-		} else if (event.getSource() == editTypeBtn) {
-			fxmlLoader = new FXMLLoader(getClass().getResource("EditType.fxml"));
-		}
-		
-		fxmlLoader.setController(this);
-		Parent edit;
-		try {
-			edit = fxmlLoader.load();
-			ghPane.getChildren().clear();
-			ghPane.getChildren().setAll(edit);
-			if (event.getSource() == editProductBtn) {
-				ObservableList<String> products = FXCollections.observableArrayList();
-				for (int i = 0; i < gh.getProducts().size(); i++) {
-					products.add(gh.getProducts().get(i).getName());
-				}
-				productList.setItems(products);
-				productList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-			} else if (event.getSource() == editClientBtn) {
-				ObservableList<String> clients = FXCollections.observableArrayList();
-				for (int i = 0; i < gh.getClients().size(); i++) {
-					clients.add(gh.getClients().get(i).getName() + " " + gh.getClients().get(i).getLastName());
-				}
-				clientList.setItems(clients);
-				clientList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-				
-			} else if (event.getSource() == editEmployeeBtn) {
-				ObservableList<String> employees = FXCollections.observableArrayList();
-				for (int i = 0; i < gh.getEmployees().size(); i++) {
-					employees.add(gh.getEmployees().get(i).getName() + " " + gh.getClients().get(i).getLastName());
-				}
-				employeesList.setItems(employees);
-				employeesList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-			} else if (event.getSource() == editIngredientBtn) {
-				ObservableList<String> ingredients = FXCollections.observableArrayList();
-				for (int i = 0; i < gh.getIngredients().size(); i++) {
-					ingredients.add(gh.getIngredients().get(i).getName());
-				}
-				ingredientList.setItems(ingredients);
-				ingredientList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-				
-			} else if (event.getSource() == editTypeBtn) {
-				ObservableList<String> types = FXCollections.observableArrayList();
-				for (int i = 0; i < gh.getTypes().size(); i++) {
-					types.add(gh.getTypes().get(i).getName());
-				}
-				typeList.setItems(types);
-				typeList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-				
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	
+	// Copy - paste
 	
 	@FXML
 	public void editProduct(ActionEvent event) {
@@ -400,6 +332,4 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		}
 		editType(event);
 	}
-	
-	
 }

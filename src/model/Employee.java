@@ -16,4 +16,10 @@ public class Employee extends Person implements Serializable, Comparable<Employe
 	public int compareTo(Employee o) {
 		return getLastName().compareTo(o.getLastName());
 	}
+	
+	@Override
+	public String toString() {
+		String details = getName() + " " + getLastName();
+		return details;
+	}
 }

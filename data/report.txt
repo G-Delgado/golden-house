@@ -1,0 +1,4 @@
+Juan Bosques;1;168000
+Felipe Hernando;1;196000
+Gabriel Perez;2;350000
+Gabriel Delgado;2;742000
