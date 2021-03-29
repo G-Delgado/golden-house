@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import model.Client;
@@ -212,6 +214,17 @@ public class ListGUI extends GoldenHouseMainGUI{
 		ingredientNameColumn.setCellValueFactory(new PropertyValueFactory<Ingredient, String>("name"));
 		ingredientCreatedByColumn.setCellValueFactory(new PropertyValueFactory<Ingredient, String>("createdBy"));
 		ingredientModifiedByColumn.setCellValueFactory(new PropertyValueFactory<Ingredient, String>("lastModifiedBy"));
+	}
+	
+	@FXML // This way I can handle that sht
+	public void handleClick(MouseEvent event) {
+		if (event.getButton().equals(MouseButton.PRIMARY)) {
+			if (event.getClickCount() == 2) {
+				String nameStuff = ingredientTable.getSelectionModel().getSelectedItem().getName();
+				System.out.println("Double clicked!");
+				System.out.println(nameStuff);
+			}
+		}
 	}
 	
 	public void initializeTypeTable() {
