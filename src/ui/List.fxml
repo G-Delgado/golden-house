@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER_LEFT" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="349.0" prefWidth="167.0" spacing="25.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER_LEFT" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="167.0" spacing="25.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label prefWidth="76.0" text="Menu" textFill="#e4d290">
          <font>
@@ -18,6 +18,7 @@
       <Button fx:id="listClientBtn" mnemonicParsing="false" onAction="#loadList" text="Listar clientes" />
       <Button fx:id="listIngredientBtn" mnemonicParsing="false" onAction="#loadList" text="Listar ingredientes" />
       <Button fx:id="listTypeBtn" mnemonicParsing="false" onAction="#loadList" text="Listar tipos de producto" />
+      <Button fx:id="listUserBtn" mnemonicParsing="false" onAction="#loadList" text="Listar usuarios" />
       <Button mnemonicParsing="false" onAction="#loadMenu" text="Regresar" />
    </children>
    <padding>

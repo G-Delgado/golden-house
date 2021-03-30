@@ -93,6 +93,16 @@ public class Order implements Serializable{
 		return found;
 	}
 	
+	public int productTimes(Product pr) {
+		int times = 0;
+		for (int i = 0; i < products.size(); i++) {
+			if (products.get(i).getName().equals(pr.getName())) {
+				times++;
+			}
+		}
+		return times;
+	}
+	
 	/**
 	 * @return the products
 	 */

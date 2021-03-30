@@ -46,12 +46,38 @@ public class GoldenHouse {
 	}
 	
 	public void generateReport(String type, LocalDate iDate, LocalTime iTime, LocalDate eDate, LocalTime eTime, String separator) throws FileNotFoundException {
+		PrintWriter pw = new PrintWriter(REPORT_FILE);
 		if (type.equals("Orders")) {
-			System.out.println("Pedidos!!");
+			pw.println("Nombre cliente,direccion,telefono,empleado,estado,fecha,hora del pedido,observaciones,productos...");
+			for (int i = 0; i < orders.size(); i++) {
+				Order or = orders.get(i);
+				if ((or.getDate().isAfter(iDate) && or.getDate().isBefore(eDate)) || or.getDate().isEqual(eDate) && eDate.isEqual(iDate)) {
+					if ((eDate.isEqual(iDate) && or.getTime().isAfter(iTime) && or.getTime().isBefore(eTime)) || (!eDate.isEqual(iDate) && or.getTime().isAfter(iTime) && or.getTime().isBefore(eTime))) {						
+						Client cl = or.getClient();
+						String result = "";
+						String appeared = "";
+						for (int j = 0; j < or.getProducts().size(); j++) {
+							if (!appeared.contains(or.getProducts().get(j).getName())) {						
+								Product pr = or.getProducts().get(j);
+								String productName = pr.getName();
+								double price = pr.getPrice();
+								int quantity = or.productTimes(pr);
+								result += productName + separator + price + separator + quantity;
+								appeared += productName;
+								//pw.print(separator + productName + separator+ price + separator + quantity);
+							}
+						}
+						pw.println(cl.getName() + " " + cl.getLastName() + separator + cl.getAddress() + separator + cl.getPhoneNumber() + separator +
+								or.getEmployee().getName() + " " + or.getEmployee().getLastName() + separator +
+								or.getState() + separator + or.getDate() + separator + or.getTime() + separator + or.getObservations() + separator + result/* Stuff here*/);
+					}
+					}
+				}
 			
 		} else if (type.equals("Employees")) {
-			System.out.println("Empleadosss!!");
-			PrintWriter pw = new PrintWriter(REPORT_FILE);
+			pw.println("Nombre y apellido,pedidos entregados,dinero total obtenido,total de pedidos,dinero total");
+			int totalOrders = 0;
+			int totalGain = 0;
 			for (int i = 0; i < employees.size(); i++) {
 				Employee em = employees.get(i);
 				int ordersCont = 0;
@@ -64,13 +90,29 @@ public class GoldenHouse {
 						totalPrice += orders.get(i).getTotalPrice();
 					}
 				}
-				System.out.println(ordersCont + " Conteo.  \n" + totalPrice + " Precio total");
-				pw.println(em.getName() + " " + em.getLastName() + separator + ordersCont + separator + totalPrice);
+				totalOrders += ordersCont;
+				totalGain += totalPrice;
+				//System.out.println(ordersCont + " Conteo.  \n" + totalPrice + " Precio total");
+				pw.println(em.getName() + " " + em.getLastName() + separator + ordersCont + separator + totalPrice + separator + totalOrders + separator + totalGain);
 			}
-			pw.close();
 		} else if (type.equals("Products")) {
-			System.out.println("Productoss!!");
+			pw.println("Nombre del producto,veces pedido,total del producto,total de pedidos,dinero total");
+			int totalOrders = 0;
+			int totalGain = 0;
+			for (int i = 0; i < products.size(); i++) {
+				Product pr = products.get(i);
+				int times = 0;
+				double total = 0;
+				for (int j = 0; j < orders.size(); j++) {
+					times += orders.get(i).productTimes(pr);
+				}
+				totalOrders += times;
+				total = pr.getPrice() * times;
+				totalGain += total;
+				pw.println(pr.getName() + separator + times + separator +total + separator + totalOrders + separator + totalGain);
+			}
 		}
+		pw.close();
 	}
 	
 	public void saveOrders() throws FileNotFoundException, IOException {

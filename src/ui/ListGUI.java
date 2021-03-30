@@ -11,10 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import model.Client;
@@ -23,6 +20,7 @@ import model.GoldenHouse;
 import model.Ingredient;
 import model.Product;
 import model.Type;
+import model.User;
 
 public class ListGUI extends GoldenHouseMainGUI{
 	
@@ -48,6 +46,9 @@ public class ListGUI extends GoldenHouseMainGUI{
 	
 	@FXML
 	private Button listTypeBtn;
+	
+	@FXML
+	private Button listUserBtn;
 	
 	// Product
 	
@@ -125,10 +126,25 @@ public class ListGUI extends GoldenHouseMainGUI{
 	@FXML
 	private TableColumn<Type, String> typeModifiedByColumn;
 	
-	// ---------------
+	// User
 	
 	@FXML
-	private TextField editIngredientName;
+	private TableView<User> userTable;
+	
+	@FXML
+	private TableColumn<User, String> userNameColumn;
+	
+	@FXML
+	private TableColumn<User, String> userLastNameColumn;
+	
+	@FXML
+	private TableColumn<User, String> userUsernameColumn;
+	
+	@FXML
+	private TableColumn<User, String> userIdColumn;
+
+	
+	// ---------------
 	
 	public ListGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp, StackPane ghPane) {
 		super(goldenHouse, username, password, mp);
@@ -154,6 +170,9 @@ public class ListGUI extends GoldenHouseMainGUI{
 		} else if (event.getSource() == listTypeBtn) {
 			fxmlLoader = new FXMLLoader(getClass().getResource("TypeList.fxml"));
 			fxmlLoader.setController(this);
+		} else if (event.getSource() == listUserBtn) {
+			fxmlLoader = new FXMLLoader(getClass().getResource("UserList.fxml"));
+			fxmlLoader.setController(this);
 		}
 		
 		Parent list;
@@ -171,9 +190,10 @@ public class ListGUI extends GoldenHouseMainGUI{
 				initializeIngredientTable();
 			} else if (event.getSource() == listTypeBtn) {
 				initializeTypeTable();
+			} else if (event.getSource() == listUserBtn) {
+				initializeUserTable();
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -222,40 +242,17 @@ public class ListGUI extends GoldenHouseMainGUI{
 		ingredientModifiedByColumn.setCellValueFactory(new PropertyValueFactory<Ingredient, String>("lastModifiedBy"));
 	}
 	
-	@FXML // This way I can handle that sht
+	/*@FXML // This way I can handle that
 	public void handleClick(MouseEvent event) {
 		if (event.getButton().equals(MouseButton.PRIMARY)) {
 			if (event.getClickCount() == 2) {
 				String nameStuff = ingredientTable.getSelectionModel().getSelectedItem().getName();
 				System.out.println("Double clicked!");
 				System.out.println(nameStuff);
-				loadEdit();
 			}
 		}
-	}
+	}*/
 
-	
-	public void loadEdit() { // Hasta ahora solo carga el fxml de ingredient y no lleva el ingrediente como tal
-		String name = ingredientTable.getSelectionModel().getSelectedItem().getName();
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditOneIngredient.fxml"));
-		ListEditGUI listEditGUI = new ListEditGUI(gh, getSessionUser(), getMainPane(), ghPane);
-		fxmlLoader.setController(listEditGUI);
-		
-		try {
-			Parent edit = fxmlLoader.load();
-			ghPane.getChildren().clear();
-			ghPane.getChildren().setAll(edit);
-			editIngredientName.setText(name);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	@FXML
-	public void finishIngredientEdit(ActionEvent event) {
-		
-	}
 	
 	public void initializeTypeTable() {
 		gh.sortTypes();
@@ -265,6 +262,17 @@ public class ListGUI extends GoldenHouseMainGUI{
 		typeNameColumn.setCellValueFactory(new PropertyValueFactory<Type, String>("name"));
 		typeCreatedByColumn.setCellValueFactory(new PropertyValueFactory<Type, String>("createdBy"));
 		typeModifiedByColumn.setCellValueFactory(new PropertyValueFactory<Type, String>("lastModifiedBy"));
+	}
+	
+	public void initializeUserTable( ) {
+		gh.sortUsers();
+		ObservableList<User> users = FXCollections.observableArrayList(gh.getUsers());
+		
+		userTable.setItems(users);
+		userNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
+		userLastNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
+		userUsernameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
+		userIdColumn.setCellValueFactory(new PropertyValueFactory<User, String>("id"));
 	}
 	
 }

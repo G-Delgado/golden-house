@@ -9,7 +9,7 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="410.0" spacing="15.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Clientes" textFill="#e4d290">
+      <Label text="Usuarios" textFill="#e4d290">
          <font>
             <Font name="Franklin Gothic Heavy" size="18.0" />
          </font>
@@ -17,13 +17,12 @@
             <Insets bottom="15.0" />
          </VBox.margin>
       </Label>
-      <TableView fx:id="clientTable" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="userTable" prefHeight="200.0" prefWidth="200.0">
          <columns>
-            <TableColumn fx:id="clientNameColumn" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="clientLastNameColumn" prefWidth="75.0" text="LastName" />
-            <TableColumn fx:id="clientIdColumn" prefWidth="86.0" text="Id" />
-            <TableColumn fx:id="clientAddressColumn" prefWidth="86.0" text="Dirección" />
-            <TableColumn fx:id="clientPhoneColumn" prefWidth="86.0" text="Telefono" />
+            <TableColumn fx:id="userNameColumn" prefWidth="81.0" text="Name" />
+            <TableColumn fx:id="userLastNameColumn" prefWidth="122.0" text="LastName" />
+            <TableColumn fx:id="userUsernameColumn" prefWidth="110.0" text="Username" />
+            <TableColumn fx:id="userIdColumn" prefWidth="96.0" text="Id" />
          </columns>
       </TableView>
    </children>
