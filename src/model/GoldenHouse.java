@@ -297,8 +297,10 @@ public class GoldenHouse {
 		
 	}
 	
-	public void addUser(String n, String ln, String id, String us, String pass) {
-		User mockUser = new User(n,ln,id,us,pass);
+	public void addUser(String n, String ln, String id, String us, String pass) { ////
+		LocalDate date = LocalDate.now();
+		LocalTime time = LocalTime.now();
+		User mockUser = new User(n,ln,id,us,pass, date, time);
 		// Recordar que deben agregarse de forma ORDENADA!!!!!!!
 		users.add(mockUser);
 	}
@@ -339,7 +341,9 @@ public class GoldenHouse {
 	}
 	
 	public void addEmployee(String name, String lastName, String id) {
-		Employee em = new Employee(name, lastName, id);
+		LocalDate date = LocalDate.now();
+		LocalTime time = LocalTime.now();
+		Employee em = new Employee(name, lastName, id, date, time);
 		employees.add(em);
 	}
 	
@@ -513,9 +517,11 @@ public class GoldenHouse {
 		for (int i = 0; i < ig.size(); i++) {
 			ing.add(ingredients.get(searchIngredientPos(ig.get(i))));
 		}
-		
+		LocalDate d = LocalDate.now();
+		LocalTime t = LocalTime.now();
 		System.out.println(ing);
-		Product pr = new Product(n,s,p,type,ing);
+		Product pr = new Product(n,s,p,type,ing, d, t);
+		System.out.println(pr.toString());
 		products.add(pr);
 	}
 	

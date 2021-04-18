@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class User extends Employee implements Serializable{
 	/**
@@ -14,8 +16,8 @@ public class User extends Employee implements Serializable{
 	private User lastModifiedBy;*/
 	// It also has the enabled attribute. I may change it, though.
 	
-	public User(String n, String ln, String id, String us, String pass) {
-		super(n,ln,id);
+	public User(String n, String ln, String id, String us, String pass, LocalDate date, LocalTime time) {
+		super(n,ln,id, date, time);
 		username = us;
 		password = pass;
 	}

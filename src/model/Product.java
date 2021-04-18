@@ -1,13 +1,15 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Product implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2;
+	private static final long serialVersionUID = 3;
 	private String name;
 	// Size will be a String for the moment
 	private String size;
@@ -16,14 +18,34 @@ public class Product implements Serializable{
 	private ArrayList<Ingredient> ingredients;
 	private User createdBy;
 	private User lastModifiedBy;
+	private LocalDate date;
+	private LocalTime time;
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
+
 	private boolean enabled;
 	
-	public Product(String n, String s, double p, Type ty, ArrayList<Ingredient> ar) {
+	public Product(String n, String s, double p, Type ty, ArrayList<Ingredient> ar, LocalDate d, LocalTime t) {
 		name = n;
 		size = s;
 		price = p;
 		type = ty;
 		ingredients = ar;
+		date = d;
+		time = t;
 	}
 	
 	/**
@@ -110,7 +132,9 @@ public class Product implements Serializable{
 				"\nSize: " + size + 
 				"\nPrice: " + price + 
 				"\nType: " + type.getName() + 
-				"\nIngredients: " + igs;
+				"\nIngredients: " + igs +
+				"\nCreation Date: " + date + 
+				"\nCreation time: " + time;
 		return details;
 	}
 

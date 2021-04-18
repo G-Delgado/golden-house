@@ -122,9 +122,8 @@ public class AddGUI extends GoldenHouseMainGUI{
 				e.printStackTrace();
 			}
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-			alert.setHeaderText("El tipo de ingrediente ha sido editado!");
-			alert.setTitle("Info!");
-			alert.setContentText("El tipo de ingrediente se ha editado exitosamente, puedes volver a editarlo si deseas");
+			alert.setHeaderText("El cliente ha sido agregado!");
+			alert.setContentText("El cliente se ha agregado exitosamente");
 			alert.showAndWait();
 			ghPane.getChildren().clear();
 			// Didn't add the observations in the conditional as they shouldn't be mandatory
@@ -157,8 +156,13 @@ public class AddGUI extends GoldenHouseMainGUI{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.setHeaderText("El empleado ha sido agregado!");
+			alert.setContentText("El empleado se ha agregado exitosamente");
+			alert.showAndWait();
+			ghPane.getChildren().clear();
 		} else {
-			
+			// AGREGAR un warninglabel
 		}
 	}
 	
@@ -188,9 +192,8 @@ public class AddGUI extends GoldenHouseMainGUI{
 				e.printStackTrace();
 			}
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-			alert.setHeaderText("El tipo de ingrediente ha sido editado!");
-			alert.setTitle("Info!");
-			alert.setContentText("El tipo de ingrediente se ha editado exitosamente, puedes volver a editarlo si deseas");
+			alert.setHeaderText("El ingrediente ha sido agregado!");
+			alert.setContentText("El ingrediente se ha agregado exitosamente!");
 			alert.showAndWait();
 			warningLabel.setText("");
 		} else {
@@ -244,12 +247,25 @@ public class AddGUI extends GoldenHouseMainGUI{
 		for (String ig: igs) {
 			arr.add(ig);
 		}
-		gh.addProduct(name, size, price, type, arr);
+		if (type == null || igs.size() == 0) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText("Hubo un error!");
+			alert.setContentText("Tienes que llenar todos los campos!");
+			alert.showAndWait();
+		} else {			
+			gh.addProduct(name, size, price, type, arr);
+			
+		}
 		try {
 			gh.saveProducts();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("El producto ha sido agregado!");
+		alert.setContentText("El producto se ha agregado exitosamente");
+		alert.showAndWait();
+		ghPane.getChildren().clear();
 	}
 	
 	@FXML
@@ -268,11 +284,21 @@ public class AddGUI extends GoldenHouseMainGUI{
 	@FXML
 	public void addType(ActionEvent event) {
 		String typeName = typeTxt.getText();
-		gh.addType(typeName, sessionUser);
-		try {
-			gh.saveTypes();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (typeName.equals("")) {
+			// Poner un warning label
+		} else {			
+			gh.addType(typeName, sessionUser);
+			try {
+				gh.saveTypes();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.setHeaderText("El tipo de producto ha sido agregado!");
+			alert.setTitle("CORRECTO!");
+			alert.setContentText("El tipo de producto se ha agregado exitosamente");
+			alert.showAndWait();
+			ghPane.getChildren().clear();
 		}
 	}
 
