@@ -9,7 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
@@ -34,6 +36,9 @@ public class AddGUI extends GoldenHouseMainGUI{
 	
 	
 	// Add Menu -----------//
+
+	@FXML
+	private Label warningLabel;
 	
 	// Employee
 	@FXML
@@ -116,9 +121,15 @@ public class AddGUI extends GoldenHouseMainGUI{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.setHeaderText("El tipo de ingrediente ha sido editado!");
+			alert.setTitle("Info!");
+			alert.setContentText("El tipo de ingrediente se ha editado exitosamente, puedes volver a editarlo si deseas");
+			alert.showAndWait();
+			ghPane.getChildren().clear();
 			// Didn't add the observations in the conditional as they shouldn't be mandatory
 		} else {
-			
+			warningLabel.setText("Tienes que llenar todos los datos!");
 		}
 	}
 	
@@ -169,11 +180,21 @@ public class AddGUI extends GoldenHouseMainGUI{
 	@FXML
 	public void addIngredient(ActionEvent event) {
 		String ingredientName = ingredientTxt.getText();
-		gh.addIngredient(ingredientName, sessionUser);
-		try {
-			gh.saveIngredients();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (!ingredientName.equals("")) {			
+			gh.addIngredient(ingredientName, sessionUser);
+			try {
+				gh.saveIngredients();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.setHeaderText("El tipo de ingrediente ha sido editado!");
+			alert.setTitle("Info!");
+			alert.setContentText("El tipo de ingrediente se ha editado exitosamente, puedes volver a editarlo si deseas");
+			alert.showAndWait();
+			warningLabel.setText("");
+		} else {
+			warningLabel.setText("Ingresa un ingrediente!");
 		}
 		
 	}

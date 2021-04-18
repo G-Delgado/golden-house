@@ -268,6 +268,11 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("Producto editado!");
+		alert.setTitle("Info!");
+		alert.setContentText("El producto se ha editado exitosamente, puedes volver a editarlo si deseas");
+		alert.showAndWait();
 		ghPane.getChildren().clear();
 	}
 	
@@ -309,8 +314,9 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setHeaderText("Cliente editado!");
 		alert.setTitle("Info!");
-		alert.setContentText("El cliente se ha editado exitosamente");
+		alert.setContentText("El cliente se ha editado exitosamente, puedes volver a editarlo si deseas");
 		alert.showAndWait();
+		ghPane.getChildren().clear();
 		//editClient(event);
 		// Lo que se debería hacer, es o devolverlo a alguna parte
 		// O vaciar los campos de texto
@@ -348,6 +354,12 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("Empleado editado!");
+		alert.setTitle("Info!");
+		alert.setContentText("El empleado se ha editado exitosamente, puedes volver a editarlo si deseas");
+		alert.showAndWait();
+		ghPane.getChildren().clear();
 	}
 	
 	@FXML
@@ -378,7 +390,13 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 			e.printStackTrace();
 		}
 		//editIngredientName.setText("");
-		editIngredient(event);
+		//editIngredient(event);
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("Ingrediente editado!");
+		alert.setTitle("Info!");
+		alert.setContentText("El ingrediente se ha editado exitosamente, puedes volver a editarlo si deseas");
+		alert.showAndWait();
+		ghPane.getChildren().clear();
 	}
 	
 	@FXML
@@ -408,7 +426,13 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		editType(event);
+		//editType(event);
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("El tipo de ingrediente ha sido editado!");
+		alert.setTitle("Info!");
+		alert.setContentText("El tipo de ingrediente se ha editado exitosamente, puedes volver a editarlo si deseas");
+		alert.showAndWait();
+		ghPane.getChildren().clear();
 	}
 	
 	
