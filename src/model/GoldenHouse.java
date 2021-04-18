@@ -52,7 +52,7 @@ public class GoldenHouse {
 			for (int i = 0; i < orders.size(); i++) {
 				Order or = orders.get(i);
 				if ((or.getDate().isAfter(iDate) && or.getDate().isBefore(eDate)) || or.getDate().isEqual(eDate) && eDate.isEqual(iDate)) {
-					if ((eDate.isEqual(iDate) && or.getTime().isAfter(iTime) && or.getTime().isBefore(eTime)) || (!eDate.isEqual(iDate) && or.getTime().isAfter(iTime) && or.getTime().isBefore(eTime))) {						
+					if (true/*(eDate.isEqual(iDate) && or.getTime().isAfter(iTime) && or.getTime().isBefore(eTime)) || (!eDate.isEqual(iDate) && or.getTime().isAfter(iTime) && or.getTime().isBefore(eTime))*/) {						
 						Client cl = or.getClient();
 						String result = "";
 						String appeared = "";
@@ -62,7 +62,7 @@ public class GoldenHouse {
 								String productName = pr.getName();
 								double price = pr.getPrice();
 								int quantity = or.productTimes(pr);
-								result += productName + separator + price + separator + quantity;
+								result += productName + separator + price + separator + quantity + separator;
 								appeared += productName;
 								//pw.print(separator + productName + separator+ price + separator + quantity);
 							}
@@ -109,7 +109,11 @@ public class GoldenHouse {
 				totalOrders += times;
 				total = pr.getPrice() * times;
 				totalGain += total;
-				pw.println(pr.getName() + separator + times + separator +total + separator + totalOrders + separator + totalGain);
+				if (i == products.size() - 1) {					
+					pw.println(pr.getName() + separator + times + separator +total + separator + totalOrders + separator + totalGain);
+				} else {
+					pw.println(pr.getName() + separator + times + separator +total + separator + totalOrders + separator + totalGain);
+				}
 			}
 		}
 		pw.close();
@@ -339,20 +343,22 @@ public class GoldenHouse {
 		employees.add(em);
 	}
 	
-	public Employee getEmployeeByName(String name) {
+	public Employee getEmployeeByName(String name) { // Revisar
 		Employee em = null;
 		for (int i = 0; i < employees.size() && em == null; i++) {
-			if ((employees.get(i).getName() + " " + employees.get(i).getLastName()).equals(name)) {
+			System.out.println("Name: " + employees.get(i).getName() + "\nLastName: " + employees.get(i).getLastName());
+			if (employees.get(i).getName().equals(name.split(" ")[0]) && employees.get(i).getLastName().equals(name.split(" ")[1])) {
 				em = employees.get(i);
 			}
 		}
 		return em;
 	}
 	
-	public void editEmployee(String n, String newN, String ln) {
+	public void editEmployee(String n, String newN, String ln) { // Revisar // Hay que manejar que pasa si es NULL
 		Employee em = null;
 		for (int i = 0; i < employees.size() && em == null; i++) {
-			if (employees.get(i).getName().equals(n)) {
+			System.out.println("Name: " + employees.get(i).getName() + "\nLastName: " + employees.get(i).getLastName());
+			if (employees.get(i).getName().equals(n.split(" ")[0]) && employees.get(i).getLastName().equals(n.split(" ")[1])) {
 				em = employees.get(i);
 			}
 		}
@@ -597,7 +603,8 @@ public class GoldenHouse {
 	public Client getClientByName(String n) {
 		Client cl = null;
 		for (int i = 0; i < clients.size(); i++) {
-			if ((clients.get(i).getName() + " " + clients.get(i).getLastName()).equals(n)) {
+			//System.out.println("Name:" + clients.get(i).getName() + "\nLast name: " + clients.get(i).getLastName());
+			if (clients.get(i).getName().equals(n.split(" ")[0]) && clients.get(i).getLastName().equals(n.split(" ")[1])) {
 				cl = clients.get(i);
 			}
 		}
@@ -608,7 +615,8 @@ public class GoldenHouse {
 	public void editClient(String n, String newN, String ln, String ad, String pn, String obs) {
 		Client cl = null;
 		for (int i = 0; i < clients.size() && cl == null; i++) {
-			if (clients.get(i).getName().equals(n)) {
+			//System.out.println("Name:" + clients.get(i).getName() + "\nLast name: " + clients.get(i).getLastName());
+			if (clients.get(i).getName().equals(n.split(" ")[0]) && clients.get(i).getLastName().equals(n.split(" ")[1])) {
 				cl = clients.get(i);
 			}
 		}

@@ -17,7 +17,7 @@
             <Insets bottom="15.0" />
          </VBox.margin>
       </Label>
-      <TableView fx:id="ingredientTable" onMouseClicked="#handleClick" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="ingredientTable" prefHeight="200.0" prefWidth="200.0">
          <columns>
             <TableColumn fx:id="ingredientNameColumn" prefWidth="95.0" text="Name" />
             <TableColumn fx:id="ingredientCreatedByColumn" prefWidth="153.0" text="Creado por" />

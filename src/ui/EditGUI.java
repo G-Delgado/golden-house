@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -185,7 +186,7 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 			} else if (event.getSource() == editEmployeeBtn) {
 				ObservableList<String> employees = FXCollections.observableArrayList();
 				for (int i = 0; i < gh.getEmployees().size(); i++) {
-					employees.add(gh.getEmployees().get(i).getName() + " " + gh.getClients().get(i).getLastName());
+					employees.add(gh.getEmployees().get(i).getName() + " " + gh.getEmployees().get(i).getLastName());
 				}
 				employeesList.setItems(employees);
 				employeesList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -281,7 +282,7 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 			Parent edit = fxmlLoader.load();
 			ghPane.getChildren().clear();
 			ghPane.getChildren().setAll(edit);
-			editClientName.setText(clName);
+			editClientName.setText(clName.split(" ")[0]);
 			editClientLastName.setText(gh.getClientByName(clName).getLastName());
 			editClientAddress.setText(gh.getClientByName(clName).getAddress());
 			editClientPhone.setText(gh.getClientByName(clName).getPhoneNumber());
@@ -305,7 +306,16 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		editClient(event);
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("Cliente editado!");
+		alert.setTitle("Info!");
+		alert.setContentText("El cliente se ha editado exitosamente");
+		alert.showAndWait();
+		//editClient(event);
+		// Lo que se debería hacer, es o devolverlo a alguna parte
+		// O vaciar los campos de texto
+		// O cambiar el campo editado
+		// De todas formas, es necesario un alert con la edición exitosa!
 	}
 	
 	@FXML
@@ -319,7 +329,7 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 			Parent edit = fxmlLoader.load();
 			ghPane.getChildren().clear();
 			ghPane.getChildren().setAll(edit);
-			editEmployeeName.setText(em);
+			editEmployeeName.setText(em.split(" ")[0]);
 			editEmployeeLastName.setText(gh.getEmployeeByName(em).getLastName());
 		} catch (IOException e) {
 			e.printStackTrace();
