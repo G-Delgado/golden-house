@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -74,12 +75,16 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 		int pos = gh.isUser(username, password);
 		this.sessionUser = gh.getUsers().get(pos);
 		mainPane = mp;
-		System.out.println(sessionUser.toString());
+		//System.out.println(sessionUser.toString());
 	}
 	
 	@FXML
 	public void loadImport(ActionEvent event) {
 		gh.importData(sessionUser);
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("Datos importados!");
+		alert.setContentText("Se han importado los datos de testeo para:\nIngredientes, Productos, Clientes y Pedidos!");
+		alert.showAndWait();
 	}
 	
 	public User getSessionUser() {

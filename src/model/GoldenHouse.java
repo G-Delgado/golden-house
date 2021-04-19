@@ -62,7 +62,7 @@ public class GoldenHouse {
 		importProducts(sessionUser);
 		importClients();
 		importOrders(sessionUser);
-		
+		// Como es para testear, no es necesario que guardemos los datos en la serialización.
 	}
 	
 	public void importOrders(User sessionUser) {
@@ -124,7 +124,9 @@ public class GoldenHouse {
 			line = br.readLine();
 			if (line != null) {
 				String [] parts = line.split(",");
-				clients.add(new Client(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]));
+				//clients.add(new Client(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]));
+				// Para insertarlos de forma ordenada
+				addClient(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
 				pw.println(line);
 			}
 		}
@@ -790,6 +792,30 @@ public class GoldenHouse {
 		}
 		
 		return cl;
+	}
+	
+	public boolean getClientBinarySearch(String name) {
+		boolean found = false;
+		
+		int i = 0;
+		int j = clients.size() - 1;
+		int m = 0;
+		
+		while (i <= j && !found) {
+			m = (j+i)/2;
+			//System.out.println(clients.get(m).getName() + " " + clients.get(m).getLastName());
+			if (clients.get(m).getLastName().compareTo(name.split(" ")[1]) == 0 && clients.get(m).getName().compareTo(name.split(" ")[0]) == 0) {
+				found = true;
+				//System.out.println("Entré! Coño!");
+			} else if (clients.get(m).getLastName().compareTo(name.split(" ")[1]) > 0 || (clients.get(m).getLastName().compareTo(name.split(" ")[1]) == 0 && clients.get(m).getName().compareTo(name.split(" ")[0]) > 0)) {
+				j = m - 1;
+				//System.out.println("M-1");
+			} else {
+				i = m + 1;
+				//System.out.println("M+1");
+			}
+		}
+		return found;
 	}
 	
 	public void editClient(String n, String newN, String ln, String ad, String pn, String obs) {

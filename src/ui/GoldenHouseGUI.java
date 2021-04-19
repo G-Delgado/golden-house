@@ -83,7 +83,7 @@ public class GoldenHouseGUI {
 	@FXML
 	public void login(ActionEvent event) {
 		if (!loginUsername.getText().equals("") && !loginPassword.getText().equals("")) {
-			System.out.println("Fua, bien hecho!");
+			//System.out.println("Fua, bien hecho!");
 			int userPos = gh.isUser(loginUsername.getText(), loginPassword.getText());
 			if (userPos != -1) {
 				try {

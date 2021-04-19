@@ -12,8 +12,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -37,6 +39,12 @@ public class OrderGUI extends GoldenHouseMainGUI{
 	// Add order
 	
 	private ArrayList<String[]> productsList;
+	
+	@FXML
+	private TextField searchClientText;
+	
+	@FXML
+	private Label timeLabel;
 	
 	@FXML
 	private ComboBox<String> clientField;
@@ -91,6 +99,29 @@ public class OrderGUI extends GoldenHouseMainGUI{
 	}
 	
 	@FXML
+	public void binarySearchClient(ActionEvent event) {
+		String fullName = searchClientText.getText();
+		// Tiempo inicio
+		long start = System.nanoTime();
+		boolean found = gh.getClientBinarySearch(fullName);
+		long end = System.nanoTime();
+		// Tiempo Fin
+		timeLabel.setText(end - start + " ns");
+		//System.out.println(found);
+		//System.out.println(searchClientText.getStyle());
+		if (found) {
+			searchClientText.setStyle("-fx-text-fill: green;");
+			clientField.setValue("");
+			//System.out.println(searchClientText.getStyle());
+		} else {
+			searchClientText.setStyle("-fx-text-fill: red;");
+			//System.out.println(searchClientText.getStyle());
+		}
+		
+		
+	}
+	
+	@FXML
 	public void addOrder(ActionEvent event) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order.fxml"));
 		fxmlLoader.setController(this);
@@ -135,22 +166,35 @@ public class OrderGUI extends GoldenHouseMainGUI{
 		String[] product = {pr, quantity};
 		System.out.println("In GUI: " + Arrays.toString(product));
 		productsList.add(product);
+		
+		productField.setValue("");
+		productQuantityField.setText("");
 	}
 	
 	@FXML
 	public void finishAddOrder(ActionEvent event) {
-		String cl = clientField.getSelectionModel().getSelectedItem();
+		String cl = "";
+		if (!searchClientText.getStyle().equals("")) {
+			cl = searchClientText.getText();
+		} else {			
+			cl = clientField.getSelectionModel().getSelectedItem();
+		}
 		String em = employeeField.getSelectionModel().getSelectedItem();
 		LocalDate date = LocalDate.now();
 		LocalTime time = LocalTime.now();
 		String observations = observationsField.getText();
-		
+		//System.out.println(searchClientText.getText());
+	
 		gh.addOrder(cl, em, productsList, date, time, observations, getSessionUser());
 		try {
 			gh.saveOrders();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("Pedido creado!");
+		alert.setContentText("El pedido ha sido creado exitosamente!");
+		ghPane.getChildren().clear();
 	}
 	
 	public void initializeTableView() {
