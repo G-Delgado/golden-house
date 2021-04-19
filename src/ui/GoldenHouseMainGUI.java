@@ -7,13 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.GoldenHouse;  // Podría ahorrarme el importar siempre si uso un extends para cada controller
 import model.User; // Podría ahorrarme el importar siempre si uso un extends para cada controller
 
-public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el importar siempre si uso un extends para cada controller
+public class GoldenHouseMainGUI extends GoldenHouseGUI {  // Podría ahorrarme el importar siempre si uso un extends para cada controller
 	 
 	private GoldenHouse gh;
 	
@@ -32,6 +33,10 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 	private ReportGUI ghReportGUI;
 	
 	private EnableDisableGUI ghEnableDisable;
+	
+	// Time
+	@FXML
+	private Label timeLabel;
 	
 	// Main Pane
 	@FXML
@@ -75,6 +80,8 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 		int pos = gh.isUser(username, password);
 		this.sessionUser = gh.getUsers().get(pos);
 		mainPane = mp;
+		Thread hilo = new ClockMain("Reloj iniciado", timeLabel);
+		hilo.start();
 		//System.out.println(sessionUser.toString());
 	}
 	
@@ -173,6 +180,7 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 		}
 		
 	}
+
 	
 	
 }

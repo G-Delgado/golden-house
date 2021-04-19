@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
@@ -157,6 +158,11 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("El producto ha sido editado!");
+		alert.setContentText("El producto se ha editado exitosamente");
+		alert.showAndWait();
+		ghPane.getChildren().clear();
 	}
 	
 	@FXML
@@ -172,6 +178,11 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("El empleado ha sido editado!");
+		alert.setContentText("El empleado se ha editado exitosamente");
+		alert.showAndWait();
+		ghPane.getChildren().clear();
 	}
 	
 	@FXML
@@ -187,6 +198,11 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("El cliente ha sido editado!");
+		alert.setContentText("El cliente se ha editado exitosamente");
+		alert.showAndWait();
+		ghPane.getChildren().clear();
 	}
 	
 	@FXML
@@ -202,6 +218,11 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("El ingrediente ha sido editado!");
+		alert.setContentText("El ingrediente se ha editado exitosamente");
+		alert.showAndWait();
+		ghPane.getChildren().clear();
 	}
 	
 	@FXML
@@ -217,6 +238,11 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("El tipo de producto ha sido editado!");
+		alert.setContentText("El tipo de producto se ha editado exitosamente");
+		alert.showAndWait();
+		ghPane.getChildren().clear();
 	}
 	
 	

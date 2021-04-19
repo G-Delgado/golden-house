@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="269.0" spacing="15.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="269.0" spacing="15.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Añade un producto nuevo" textFill="#e4d290">
          <font>
             <Font name="Franklin Gothic Heavy" size="18.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="15.0" />
+            <Insets bottom="5.0" />
          </VBox.margin>
       </Label>
       <HBox alignment="CENTER" prefHeight="31.0" prefWidth="600.0">
@@ -68,6 +68,9 @@
          </children>
       </HBox>
       <ListView fx:id="ingredientsList" prefHeight="200.0" prefWidth="200.0" />
-      <Button mnemonicParsing="false" onAction="#addProduct" text="Añadir" />
+      <Button mnemonicParsing="false" onAction="#addProduct" text="Añadir">
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin></Button>
    </children>
 </VBox>

@@ -267,10 +267,10 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 			gh.saveProducts();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}		
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setHeaderText("Producto editado!");
-		alert.setContentText("El producto se ha editado exitosamente, puedes volver a editarlo si deseas");
+		alert.setContentText("El producto ha sido editado correctamente!");
 		alert.showAndWait();
 		ghPane.getChildren().clear();
 	}
@@ -312,7 +312,7 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		}
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setHeaderText("Cliente editado!");
-		alert.setContentText("El cliente se ha editado exitosamente, puedes volver a editarlo si deseas");
+		alert.setContentText("El cliente se ha editado exitosamente!");
 		alert.showAndWait();
 		ghPane.getChildren().clear();
 		//editClient(event);
@@ -354,7 +354,7 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		}
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setHeaderText("Empleado editado!");
-		alert.setContentText("El empleado se ha editado exitosamente, puedes volver a editarlo si deseas");
+		alert.setContentText("El empleado se ha editado exitosamente!");
 		alert.showAndWait();
 		ghPane.getChildren().clear();
 	}
@@ -390,7 +390,7 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		//editIngredient(event);
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setHeaderText("Ingrediente editado!");
-		alert.setContentText("El ingrediente se ha editado exitosamente, puedes volver a editarlo si deseas");
+		alert.setContentText("El ingrediente se ha editado exitosamente");
 		alert.showAndWait();
 		ghPane.getChildren().clear();
 	}
@@ -425,7 +425,7 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		//editType(event);
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setHeaderText("El tipo de producto ha sido editado!");
-		alert.setContentText("El tipo de producto se ha editado exitosamente, puedes volver a editarlo si deseas");
+		alert.setContentText("El tipo de producto se ha editado exitosamente");
 		alert.showAndWait();
 		ghPane.getChildren().clear();
 	}

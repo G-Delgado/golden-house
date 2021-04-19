@@ -154,6 +154,10 @@ public class OrderGUI extends GoldenHouseMainGUI{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setContentText("El pedido se ha agregado exitosamente");
+		alert.showAndWait();
+		ghPane.getChildren().clear();
 		
 	}
 	

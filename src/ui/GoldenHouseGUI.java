@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -88,6 +89,9 @@ public class GoldenHouseGUI {
 			if (userPos != -1) {
 				try {
 					warningLabel.setText("");
+					Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+					alert.setContentText("Has iniciado sesión correctamente!");
+					alert.showAndWait();
 					loadMain(loginUsername.getText(), loginPassword.getText());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -139,6 +143,9 @@ public class GoldenHouseGUI {
 				id = registerName.getText().substring(0,2) + registerLastName.getText().substring(0,2) + num;
 				if (!id.equals("")) {
 					gh.addUser(registerName.getText(), registerLastName.getText(), id, registerUsername.getText(), registerPassword.getText());
+					Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+					alert.setContentText("Te has registrado correctamente!");
+					alert.showAndWait();
 					gh.saveUsers();
 					loadMain(registerUsername.getText(), registerPassword.getText());					
 				}
@@ -172,6 +179,9 @@ public class GoldenHouseGUI {
 			if (password.equals(confirmPassword) && !password.equals("") && !confirmPassword.equals("")) {
 				gh.changeUserPassword(username, confirmPassword);
 				warningLabel.setText("");
+				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+				alert.setContentText("Has cambiado la contraseña correctamente!");
+				alert.showAndWait();
 				try {
 					loadMain(username, password);
 				} catch (IOException e) {

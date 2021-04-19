@@ -13,21 +13,28 @@
    <children>
       <VBox fx:id="menu" alignment="CENTER_LEFT" prefHeight="400.0" prefWidth="176.0" spacing="25.0" style="-fx-border-color: #e4d290; -fx-background-color: #000000;">
          <children>
-            <Label prefWidth="76.0" text="Menu" textFill="#e4d290">
-               <font>
-                  <Font name="Franklin Gothic Heavy" size="29.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="169.0">
+               <children>
+                  <Label prefWidth="76.0" text="Menu" textFill="#e4d290">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="29.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
             <Button fx:id="orderSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Pedidos" />
             <Button fx:id="addSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Agregar" />
             <Button fx:id="editSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Editar" />
             <Button fx:id="listSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Listar" />
             <Button fx:id="enableDisable" mnemonicParsing="false" onAction="#loadSubMenu" text="Habilitar/Deshabilitar" />
             <Button fx:id="deleteSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Eliminar" />
-            <Button fx:id="reportSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Generar reportes" />
+            <Button fx:id="reportSub" mnemonicParsing="false" onAction="#loadSubMenu" text="Generar reportes">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></Button>
          </children>
          <padding>
             <Insets left="5.0" />
@@ -37,16 +44,21 @@
          <children>
             <Pane prefHeight="29.0" prefWidth="424.0" style="-fx-background-color: #000000;" VBox.vgrow="ALWAYS">
                <children>
-                  <Label text="Golden House" textFill="#e4d290">
+                  <Label layoutY="7.0" text="Golden House" textFill="#e4d290">
                      <font>
-                        <Font name="Franklin Gothic Heavy" size="29.0" />
+                        <Font name="Franklin Gothic Heavy" size="23.0" />
                      </font>
                      <padding>
                         <Insets left="5.0" />
                      </padding>
                   </Label>
                   <Button layoutX="325.0" layoutY="5.0" mnemonicParsing="false" onAction="#loadLogin" text="Cerrar sesión" />
-                  <Button layoutX="234.0" layoutY="5.0" mnemonicParsing="false" onAction="#loadImport" text="Importar" />
+                  <Button layoutX="250.0" layoutY="5.0" mnemonicParsing="false" onAction="#loadImport" text="Importar" />
+                  <Label fx:id="timeLabel" layoutX="172.0" layoutY="12.0" prefHeight="16.0" prefWidth="62.0" text="00:00:00" textFill="#e4d290">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="14.0" />
+                     </font>
+                  </Label>
                </children>
                <padding>
                   <Insets left="5.0" />

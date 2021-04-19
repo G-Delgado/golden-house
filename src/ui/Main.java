@@ -46,6 +46,7 @@ public class Main extends Application{
 		Parent root = fxmlLoader.load();
 		
 		Scene scene = new Scene(root);
+		//Mirscene.getStylesheets().add("../src/ui/styles.css");
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Golden House User Interface");
 		primaryStage.show();

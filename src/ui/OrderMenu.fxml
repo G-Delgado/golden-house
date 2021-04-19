@@ -15,7 +15,6 @@
       </Label>
       <Button mnemonicParsing="false" onAction="#addOrder" text="Agregar pedido" />
       <Button mnemonicParsing="false" onAction="#modifyState" text="Modificar estado" />
-      <Button mnemonicParsing="false" onAction="#editOrder" text="Editar pedido" />
       <Button mnemonicParsing="false" onAction="#loadMenu" text="Regresar" />
    </children>
    <padding>

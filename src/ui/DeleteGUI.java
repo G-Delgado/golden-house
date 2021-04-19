@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.BorderPane;
@@ -89,14 +90,20 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 		String pr = deleteProductList.getSelectionModel().getSelectedItem();
 		if (!gh.productIsUsed(pr)) {
 			gh.deleteProduct(pr);
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.setContentText("El producto ha sido eliminado correctamente!");
+			alert.showAndWait();
 			try {
 				gh.saveProducts();
-				loadDeleteProduct(event);
+				//loadDeleteProduct(event);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			ghPane.getChildren().clear();
 		} else {
-			// Some warning label
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("El producto está siendo utilizado!");
+			alert.showAndWait();
 		}
 	}
 	
@@ -126,12 +133,16 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 		String cl = deleteClientList.getSelectionModel().getSelectedItem();
 		String[] clArr = cl.split(" ");
 		gh.deleteClient(clArr[0], clArr[1]);
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setContentText("El cliente ha sido eliminado correctamente!");
+		alert.showAndWait();
 		try {
 			gh.saveClients();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		loadDeleteClient(event);
+		//loadDeleteClient(event);
+		ghPane.getChildren().clear();
 	}
 	
 	@FXML
@@ -160,12 +171,16 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 	public void finishEmployeeDelete(ActionEvent event) {
 		String em = deleteEmployeeList.getSelectionModel().getSelectedItem();
 		gh.deleteEmployee(em);
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setContentText("El emplead ha sido eliminado correctamente!");
+		alert.showAndWait();
 		try {
 			gh.saveEmployees();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		loadDeleteEmployee(event);
+		//loadDeleteEmployee(event);
+		ghPane.getChildren().clear();
 	}
 	
 	@FXML
@@ -194,14 +209,20 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 		String ig = deleteIngredientList.getSelectionModel().getSelectedItem();
 		if (!gh.ingredientIsUsed(ig)) {			
 			gh.deleteIngredient(ig);
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.setContentText("El ingrediente ha sido eliminado correctamente!");
+			alert.showAndWait();
 			try {
 				gh.saveIngredients();
-				loadDeleteIngredient(event);
+				//loadDeleteIngredient(event);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			ghPane.getChildren().clear();
 		} else {
-			// Some warning label
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("El ingrediente está siendo utilizado!");
+			alert.showAndWait();
 		}
 	}
 	
@@ -230,13 +251,17 @@ public class DeleteGUI extends GoldenHouseMainGUI {
 	public void finishTypeDelete(ActionEvent event) {
 		String ty = deleteTypeList.getSelectionModel().getSelectedItem();
 		gh.deleteType(ty);
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setContentText("El tipo de producto ha sido eliminado correctamente!");
+		alert.showAndWait();
 		try {
 			gh.saveTypes();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		loadDeleteType(event);
+		//loadDeleteType(event);
+		ghPane.getChildren().clear();
 	}
 	
 }
