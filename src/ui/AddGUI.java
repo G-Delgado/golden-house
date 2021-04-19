@@ -253,7 +253,7 @@ public class AddGUI extends GoldenHouseMainGUI{
 			alert.setContentText("Tienes que llenar todos los campos!");
 			alert.showAndWait();
 		} else {			
-			gh.addProduct(name, size, price, type, arr);
+			gh.addProduct(name, size, price, type, arr, sessionUser);
 			
 		}
 		try {

@@ -77,6 +77,11 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI{  // Podría ahorrarme el 
 		System.out.println(sessionUser.toString());
 	}
 	
+	@FXML
+	public void loadImport(ActionEvent event) {
+		gh.importData(sessionUser);
+	}
+	
 	public User getSessionUser() {
 		return sessionUser;
 	}

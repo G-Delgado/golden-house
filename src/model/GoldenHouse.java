@@ -1,9 +1,11 @@
 package model;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -26,6 +28,16 @@ public class GoldenHouse {
 	public static final String USERS_FILE = "data/users.gh";
 	public static final String REPORT_FILE = "data/report.txt";
 	
+	// Imports
+	public static final String IMPORT_INGREDIENTS = "data/Mock_Ingredients.csv";
+	public static final String IMPORT_INGREDIENTS_TEST = "data/Mock_Ingredients_Test_Result.csv";
+	public static final String IMPORT_PRODUCTS = "data/Mock_Products.csv";
+	public static final String IMPORT_PRODUCTS_RESULT = "data/Mock_Products_Result.csv";
+	public static final String IMPORT_CLIENTS = "data/Mock_Clients.csv";
+	public static final String IMPORT_CLIENTS_RESULT = "data/Mock_Clients_Result.csv";
+	public static final String IMPORT_ORDERS = "data/Mock_Orders.csv";
+	public static final String IMPORT_ORDERS_RESULT = "data/Mock_Orders_Result.csv";
+	
 	// Attributes
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
@@ -44,6 +56,164 @@ public class GoldenHouse {
 		employees = new ArrayList<>();
 		users = new ArrayList<>();
 	}
+	
+	public void importData(User sessionUser) {
+		importIngredients(sessionUser);
+		importProducts(sessionUser);
+		importClients();
+		importOrders(sessionUser);
+		
+	}
+	
+	public void importOrders(User sessionUser) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(IMPORT_ORDERS));
+			PrintWriter pw = new PrintWriter(IMPORT_ORDERS_RESULT);
+			String line = "";
+			pw.println(br.readLine());
+			while (line != null) {
+				line = br.readLine();
+				if (line != null) {
+					String [] parts = line.split(",");
+					int randState = (int) (1+ Math.random() * 4);
+					State state = null;
+					if (randState == 1) {
+						state = State.REQUESTED;
+					} else if (randState == 2) {
+						state = State.INPROCESS;
+					} else if (randState == 3){
+						state = State.SENT;
+					} else {
+						state = State.DELIVERED;
+					}
+					
+					int randPr = (int) (1 + Math.random() * 10);
+					ArrayList<Product> prs = new ArrayList<>();
+					for (int i = 0; i < products.size() && i < randPr; i++) {
+						prs.add(products.get(i));
+					}
+					
+					int randCl = (int) (Math.random() * clients.size());
+					Client cl = clients.get(randCl);
+					
+					int randEm = (int) (Math.random() * employees.size());
+					Employee em = employees.get(randEm);
+					
+					LocalDate date = LocalDate.now();
+					LocalTime time = LocalTime.now();
+					
+					orders.add(new Order(parts[0], state, prs, cl, em, date, time, parts[7], sessionUser));
+					pw.println(parts[0] + "," + state + "," + prs.toString() + "," + cl.getName() + " " + cl.getLastName() + "," + em.getName() + " " + em.getLastName() + "," + date + "," + time + "," + parts[7] + "," + sessionUser);
+				}
+			}
+			pw.close();
+			br.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void importClients() {
+		try {
+		BufferedReader br = new BufferedReader(new FileReader(IMPORT_CLIENTS));
+		PrintWriter pw = new PrintWriter(IMPORT_CLIENTS_RESULT);
+		String line = "";
+		pw.println(br.readLine());
+		while (line != null) {
+			line = br.readLine();
+			if (line != null) {
+				String [] parts = line.split(",");
+				clients.add(new Client(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]));
+				pw.println(line);
+			}
+		}
+		pw.close();
+		br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void importProducts(User sessionUser) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(IMPORT_PRODUCTS));
+			PrintWriter pw = new PrintWriter(IMPORT_PRODUCTS_RESULT);
+			String line = "";
+			pw.println(br.readLine());
+			while (line != null) {
+				line = br.readLine();
+				if (line != null) {
+					String [] parts = line.split(",");
+					String name = parts[0];
+					String size = parts[1];
+					double price = Double.parseDouble(parts[2].substring(1, parts[2].length()));
+					int rand = (int) (Math.random() * types.size() - 1);
+					Type ty = types.get(rand);
+					int randIg = (int) (1 + Math.random() * 10);
+					ArrayList<Ingredient> igs = new ArrayList<>();
+					for (int i = 0; i < ingredients.size() && i < randIg; i++) {
+						igs.add(ingredients.get(i));
+					}
+					// It seems i forgot to add the createdBy and lastModifiedBy
+					LocalDate date = LocalDate.now();
+					LocalTime time = LocalTime.now();
+					products.add(new Product(name, size, price, ty, igs, sessionUser, date, time));
+					pw.println(name + "," + size + "," + ty.getName() + "," + igs.toString() + "," + sessionUser + "," + sessionUser + "," +date + "," + time);
+					
+				}
+			}
+			pw.close();
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void importIngredients(User sessionUser) {
+		BufferedReader br;
+		PrintWriter pw;
+		try {
+			br = new BufferedReader(new FileReader(IMPORT_INGREDIENTS));
+			pw = new PrintWriter(IMPORT_INGREDIENTS_TEST);
+			String line = "";
+			pw.println(br.readLine());
+			while (line != null) {
+				//System.out.println("Here!");
+				line = br.readLine();
+				if (line != null) {
+					//System.out.println(line);
+					String [] parts = line.split(",");
+					String name = parts[0];
+					boolean enabled = true;
+					if (parts[1].equals("")) {						
+						parts[1] = sessionUser.toString();
+						parts[2] = sessionUser.toString();
+						enabled = parts[3] == "true" ? true : false;
+						pw.println(name + "," + parts[1] + "," + parts[2] + "," + parts[3]);
+					} else {
+						parts[2] = sessionUser.toString();
+						parts[3] = sessionUser.toString();
+						enabled = parts[4] == "true" ? true : false;
+						if (parts.length >= 6) {
+							pw.println(name + "," + parts[1] + "," + parts[2] + "," + parts[3] + "," + parts[4] + "true");
+						} else {							
+							pw.println(name + "," + parts[1] + "," + parts[2] + "," + parts[3] + "," + parts[4]);
+						}
+					}
+					Ingredient ig = new Ingredient(name, sessionUser, enabled);
+					//System.out.println(ig.toString());
+					ingredients.add(ig);
+					
+				}
+			}
+			br.close();
+			pw.close();
+		} catch (IOException e) {
+			System.out.println("Something Went Wrong!");
+		}
+	}
+	
 	
 	public void generateReport(String type, LocalDate iDate, LocalTime iTime, LocalDate eDate, LocalTime eTime, String separator) throws FileNotFoundException {
 		PrintWriter pw = new PrintWriter(REPORT_FILE);
@@ -80,20 +250,22 @@ public class GoldenHouse {
 			int totalGain = 0;
 			for (int i = 0; i < employees.size(); i++) {
 				Employee em = employees.get(i);
-				int ordersCont = 0;
-				long totalPrice = 0;
-				System.out.println(orders.size() + " Tamaño\n");
-				for (int j = 0; j < orders.size(); j++) {
-					if (orders.get(j).isEmployee(em)) {
-						System.out.println("Im inside");
-						ordersCont++;
-						totalPrice += orders.get(i).getTotalPrice();
+				if ((em.getDate().isAfter(iDate) && em.getDate().isBefore(eDate)) || em.getDate().isEqual(eDate) && eDate.isEqual(iDate)) {					
+					int ordersCont = 0;
+					long totalPrice = 0;
+					System.out.println(orders.size() + " Tamaño\n");
+					for (int j = 0; j < orders.size(); j++) {
+						if (orders.get(j).isEmployee(em)) {
+							System.out.println("Im inside");
+							ordersCont++;
+							totalPrice += orders.get(i).getTotalPrice();
+						}
 					}
+					totalOrders += ordersCont;
+					totalGain += totalPrice;
+					//System.out.println(ordersCont + " Conteo.  \n" + totalPrice + " Precio total");
+					pw.println(em.getName() + " " + em.getLastName() + separator + ordersCont + separator + totalPrice + separator + totalOrders + separator + totalGain);
 				}
-				totalOrders += ordersCont;
-				totalGain += totalPrice;
-				//System.out.println(ordersCont + " Conteo.  \n" + totalPrice + " Precio total");
-				pw.println(em.getName() + " " + em.getLastName() + separator + ordersCont + separator + totalPrice + separator + totalOrders + separator + totalGain);
 			}
 		} else if (type.equals("Products")) {
 			pw.println("Nombre del producto,veces pedido,total del producto,total de pedidos,dinero total");
@@ -101,18 +273,20 @@ public class GoldenHouse {
 			int totalGain = 0;
 			for (int i = 0; i < products.size(); i++) {
 				Product pr = products.get(i);
-				int times = 0;
-				double total = 0;
-				for (int j = 0; j < orders.size(); j++) {
-					times += orders.get(i).productTimes(pr);
-				}
-				totalOrders += times;
-				total = pr.getPrice() * times;
-				totalGain += total;
-				if (i == products.size() - 1) {					
-					pw.println(pr.getName() + separator + times + separator +total + separator + totalOrders + separator + totalGain);
-				} else {
-					pw.println(pr.getName() + separator + times + separator +total + separator + totalOrders + separator + totalGain);
+				if ((pr.getDate().isAfter(iDate) && pr.getDate().isBefore(eDate)) || pr.getDate().isEqual(eDate) && eDate.isEqual(iDate)) {					
+					int times = 0;
+					double total = 0;
+					for (int j = 0; j < orders.size(); j++) {
+						times += orders.get(i).productTimes(pr);
+					}
+					totalOrders += times;
+					total = pr.getPrice() * times;
+					totalGain += total;
+					if (i == products.size() - 1) {					
+						pw.println(pr.getName() + separator + times + separator +total + separator + totalOrders + separator + totalGain);
+					} else {
+						pw.println(pr.getName() + separator + times + separator +total + separator + totalOrders + separator + totalGain);
+					}
 				}
 			}
 		}
@@ -436,7 +610,7 @@ public class GoldenHouse {
 		}
 	}
 	
-	public void sortIngredients() {
+	public void sortIngredients() { // Bubble sort
 		System.out.println(Arrays.toString(ingredients.toArray()));
 		for (int i = 0; i < ingredients.size(); i++) {
 			for (int j = i + 1; j < ingredients.size(); j++) {
@@ -492,7 +666,7 @@ public class GoldenHouse {
 		}
 	}
 	
-	public void sortTypes() {
+	public void sortTypes() { // Insertion sort
 		System.out.println(Arrays.toString(types.toArray()));
 		for (int i = 1; i < types.size(); i++) {
 			for (int j = i; j > 0 && types.get(j).getName().compareTo(types.get(j-1).getName()) < 0; j--) {
@@ -504,7 +678,7 @@ public class GoldenHouse {
 		System.out.println(Arrays.toString(types.toArray()));
 	}
 	
-	public void addProduct(String n, String s, double p, String ty, ArrayList<String> ig) {
+	public void addProduct(String n, String s, double p, String ty, ArrayList<String> ig, User sessionUser) {
 		boolean foundType = false;
 		Type type = null;
 		for (int i = 0; i < types.size() && !foundType; i++) {
@@ -520,7 +694,7 @@ public class GoldenHouse {
 		LocalDate d = LocalDate.now();
 		LocalTime t = LocalTime.now();
 		System.out.println(ing);
-		Product pr = new Product(n,s,p,type,ing, d, t);
+		Product pr = new Product(n,s,p,type,ing,sessionUser, d, t);
 		System.out.println(pr.toString());
 		products.add(pr);
 	}

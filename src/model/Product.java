@@ -38,12 +38,14 @@ public class Product implements Serializable{
 
 	private boolean enabled;
 	
-	public Product(String n, String s, double p, Type ty, ArrayList<Ingredient> ar, LocalDate d, LocalTime t) {
+	public Product(String n, String s, double p, Type ty, ArrayList<Ingredient> ar, User cb, LocalDate d, LocalTime t) {
 		name = n;
 		size = s;
 		price = p;
 		type = ty;
 		ingredients = ar;
+		createdBy = cb;
+		lastModifiedBy = cb;
 		date = d;
 		time = t;
 	}

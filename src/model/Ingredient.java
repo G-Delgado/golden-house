@@ -18,6 +18,13 @@ public class Ingredient implements Serializable{
 		setLastModifiedBy(createdBy);
 		setEnabled(true);
 	}
+	
+	public Ingredient(String name, User createdBy, boolean enabled) {
+		this.name = name;
+		setCreatedBy(createdBy);
+		setLastModifiedBy(createdBy);
+		this.enabled = enabled;
+	}
 
 	/**
 	 * @return the name

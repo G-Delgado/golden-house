@@ -46,6 +46,7 @@
                      </padding>
                   </Label>
                   <Button layoutX="325.0" layoutY="5.0" mnemonicParsing="false" onAction="#loadLogin" text="Cerrar sesión" />
+                  <Button layoutX="234.0" layoutY="5.0" mnemonicParsing="false" onAction="#loadImport" text="Importar" />
                </children>
                <padding>
                   <Insets left="5.0" />
