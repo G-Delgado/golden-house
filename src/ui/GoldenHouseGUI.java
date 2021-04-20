@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 //import javafx.stage.Stage;
@@ -160,14 +160,19 @@ public class GoldenHouseGUI {
 			td = new Thread(new Runnable() {
 				@Override
 				public void run() {
-					for (;;) {
+					while (true) {
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
-						dateLabel.setText(date.getDayOfMonth() + "/" + date.getMonthValue() + "/" + date.getYear());
-						timeLabel.setText(time.getHour() + ":" + time.getMinute() + ":" + time.getSecond());
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {								
+								dateLabel.setText(LocalDate.now().getDayOfMonth() + "/" + LocalDate.now().getMonthValue() + "/" + LocalDate.now().getYear());
+								timeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond());
+							}
+						});
 						
 						
 					}
