@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +30,8 @@ public class ListGUI extends GoldenHouseMainGUI{
 	
 	@FXML
 	private StackPane ghPane;
+	
+	private ResourceBundle rb;
 	
 	// List
 	
@@ -146,10 +149,11 @@ public class ListGUI extends GoldenHouseMainGUI{
 	
 	// ---------------
 	
-	public ListGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp, StackPane ghPane) {
-		super(goldenHouse, username, password, mp);
+	public ListGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp, StackPane ghPane, ResourceBundle rb) {
+		super(goldenHouse, username, password, mp, rb);
 		this.gh = goldenHouse;
 		this.ghPane = ghPane;
+		this.setRb(rb);
 	}
 	
 	@FXML
@@ -273,6 +277,20 @@ public class ListGUI extends GoldenHouseMainGUI{
 		userLastNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
 		userUsernameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
 		userIdColumn.setCellValueFactory(new PropertyValueFactory<User, String>("id"));
+	}
+
+	/**
+	 * @return the rb
+	 */
+	public ResourceBundle getRb() {
+		return rb;
+	}
+
+	/**
+	 * @param rb the rb to set
+	 */
+	public void setRb(ResourceBundle rb) {
+		this.rb = rb;
 	}
 	
 }

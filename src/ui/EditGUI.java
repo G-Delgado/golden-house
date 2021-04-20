@@ -2,6 +2,7 @@ package ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +35,8 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 	
 	@FXML
 	private BorderPane mainPane;
+	
+	private ResourceBundle rb;
 	
 	// Gh Main Pane
 	
@@ -139,12 +142,13 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 	
 	
 	// Constructor --------------------
-	public EditGUI(GoldenHouse gh, User sessionUser, BorderPane mainPane, StackPane ghPane) {
-		super(gh,sessionUser.getUsername(), sessionUser.getPassword(), mainPane);
+	public EditGUI(GoldenHouse gh, User sessionUser, BorderPane mainPane, StackPane ghPane, ResourceBundle rb) {
+		super(gh,sessionUser.getUsername(), sessionUser.getPassword(), mainPane, rb);
 		this.gh = gh;
 		this.sessionUser = sessionUser;
 		this.mainPane = mainPane;
 		this.ghPane = ghPane;
+		this.setRb(rb);
 	}
 	
 	@FXML
@@ -428,6 +432,20 @@ public class EditGUI extends GoldenHouseMainGUI{  // Podría ahorrarme el importa
 		alert.setContentText("El tipo de producto se ha editado exitosamente");
 		alert.showAndWait();
 		ghPane.getChildren().clear();
+	}
+
+	/**
+	 * @return the rb
+	 */
+	public ResourceBundle getRb() {
+		return rb;
+	}
+
+	/**
+	 * @param rb the rb to set
+	 */
+	public void setRb(ResourceBundle rb) {
+		this.rb = rb;
 	}
 	
 	

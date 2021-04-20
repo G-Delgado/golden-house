@@ -2,6 +2,7 @@ package ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +34,8 @@ public class AddGUI extends GoldenHouseMainGUI{
 	//private BorderPane mainPane; // Check this warning
 	
 	private StackPane ghPane;
+	
+	private ResourceBundle rb;
 	
 	
 	// Add Menu -----------//
@@ -88,12 +91,13 @@ public class AddGUI extends GoldenHouseMainGUI{
 	@FXML
 	private ListView<String> ingredientsList;
 	
-	public AddGUI(GoldenHouse gh, User sessionUser, BorderPane mainPane, StackPane ghPane) {
-		super(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane);
+	public AddGUI(GoldenHouse gh, User sessionUser, BorderPane mainPane, StackPane ghPane, ResourceBundle rb) {
+		super(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane, rb);
 		this.gh = gh;
 		this.sessionUser = sessionUser;
 		//this.mainPane = mainPane;
 		this.ghPane = ghPane;
+		this.setRb(rb);
 	}
 	
 	@FXML
@@ -302,6 +306,20 @@ public class AddGUI extends GoldenHouseMainGUI{
 			alert.showAndWait();
 			ghPane.getChildren().clear();
 		}
+	}
+
+	/**
+	 * @return the rb
+	 */
+	public ResourceBundle getRb() {
+		return rb;
+	}
+
+	/**
+	 * @param rb the rb to set
+	 */
+	public void setRb(ResourceBundle rb) {
+		this.rb = rb;
 	}
 
 }

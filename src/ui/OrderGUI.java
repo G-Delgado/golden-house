@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +34,8 @@ public class OrderGUI extends GoldenHouseMainGUI{
 	private GoldenHouse gh;
 	
 	private StackPane ghPane;
+	
+	private ResourceBundle rb;
 	
 	// Order menu
 	
@@ -92,10 +95,11 @@ public class OrderGUI extends GoldenHouseMainGUI{
 	
 	// Edit order
 
-	public OrderGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp, StackPane ghPane) {
-		super(goldenHouse, username, password, mp);
+	public OrderGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp, StackPane ghPane, ResourceBundle rb) {
+		super(goldenHouse, username, password, mp, rb);
 		gh = goldenHouse;
 		this.ghPane = ghPane;
+		this.setRb(rb);
 	}
 	
 	@FXML
@@ -154,10 +158,6 @@ public class OrderGUI extends GoldenHouseMainGUI{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-		alert.setContentText("El pedido se ha agregado exitosamente");
-		alert.showAndWait();
-		ghPane.getChildren().clear();
 		
 	}
 	
@@ -255,6 +255,20 @@ public class OrderGUI extends GoldenHouseMainGUI{
 	@FXML
 	public void editOrder(ActionEvent event) {
 		
+	}
+
+	/**
+	 * @return the rb
+	 */
+	public ResourceBundle getRb() {
+		return rb;
+	}
+
+	/**
+	 * @param rb the rb to set
+	 */
+	public void setRb(ResourceBundle rb) {
+		this.rb = rb;
 	}
 
 }

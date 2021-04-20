@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +24,8 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 	
 	@FXML
 	private StackPane ghPane;
+	
+	private ResourceBundle rb;
 	
 	// Menu enableDisable buttons
 	@FXML
@@ -68,10 +71,11 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 	private ListView<String> enableDisableTypeList;
 	 
 	// ------- Constructor --------- //
-	public EnableDisableGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp, StackPane ghPane) {
-		super(goldenHouse, username, password, mp);
+	public EnableDisableGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp, StackPane ghPane, ResourceBundle rb) {
+		super(goldenHouse, username, password, mp, rb);
 		this.ghPane = ghPane;
 		this.gh = goldenHouse;
+		this.setRb(rb);
 	}
 	
 	@FXML
@@ -243,6 +247,20 @@ public class EnableDisableGUI extends GoldenHouseMainGUI{
 		alert.setContentText("El tipo de producto se ha editado exitosamente");
 		alert.showAndWait();
 		ghPane.getChildren().clear();
+	}
+
+	/**
+	 * @return the rb
+	 */
+	public ResourceBundle getRb() {
+		return rb;
+	}
+
+	/**
+	 * @param rb the rb to set
+	 */
+	public void setRb(ResourceBundle rb) {
+		this.rb = rb;
 	}
 	
 	

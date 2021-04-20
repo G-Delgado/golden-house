@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +24,8 @@ public class ReportGUI extends GoldenHouseMainGUI{
 	
 	@FXML
 	private StackPane ghPane;
+	
+	private ResourceBundle rb;
 	
 	// Report
 	
@@ -44,11 +47,12 @@ public class ReportGUI extends GoldenHouseMainGUI{
 	@FXML
 	private TextField endHour;
 	
-	public ReportGUI(GoldenHouse gh, User sessionUser, BorderPane mainPane, StackPane ghPane) {
-		super(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane);
+	public ReportGUI(GoldenHouse gh, User sessionUser, BorderPane mainPane, StackPane ghPane, ResourceBundle rb) {
+		super(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane, rb);
 		this.ghPane = ghPane;
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GenerateReport.fxml"));
 		fxmlLoader.setController(this);
+		this.setRb(rb);
 		
 		try {
 			Parent report = fxmlLoader.load();
@@ -78,6 +82,20 @@ public class ReportGUI extends GoldenHouseMainGUI{
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @return the rb
+	 */
+	public ResourceBundle getRb() {
+		return rb;
+	}
+
+	/**
+	 * @param rb the rb to set
+	 */
+	public void setRb(ResourceBundle rb) {
+		this.rb = rb;
 	}
 	
 }

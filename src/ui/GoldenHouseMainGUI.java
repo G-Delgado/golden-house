@@ -1,6 +1,8 @@
 package ui;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +35,8 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI {  // Podría ahorrarme el
 	private ReportGUI ghReportGUI;
 	
 	private EnableDisableGUI ghEnableDisable;
+	
+	private ResourceBundle rb;
 	
 	// Time
 	@FXML
@@ -74,14 +78,13 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI {  // Podría ahorrarme el
 
 	
 	
-	public GoldenHouseMainGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp) {
+	public GoldenHouseMainGUI(GoldenHouse goldenHouse, String username, String password, BorderPane mp, ResourceBundle rb) {
 		super(goldenHouse, mp);
 		gh = goldenHouse;
 		int pos = gh.isUser(username, password);
 		this.sessionUser = gh.getUsers().get(pos);
 		mainPane = mp;
-		Thread hilo = new ClockMain("Reloj iniciado", timeLabel);
-		hilo.start();
+		this.rb = rb;
 		//System.out.println(sessionUser.toString());
 	}
 	
@@ -142,31 +145,31 @@ public class GoldenHouseMainGUI extends GoldenHouseGUI {  // Podría ahorrarme el
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(""));;
 		if (event.getSource() == orderSub) {
 			fxmlLoader = new FXMLLoader(getClass().getResource("OrderMenu.fxml"));
-			ghOrderGUI = new OrderGUI(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane, ghPane);
+			ghOrderGUI = new OrderGUI(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane, ghPane, rb);
 			fxmlLoader.setController(ghOrderGUI);
 		} else if (event.getSource() == addSub) {
 			fxmlLoader = new FXMLLoader(getClass().getResource("Add.fxml"));
-			ghAddGUI = new AddGUI(gh, sessionUser, mainPane, ghPane);
+			ghAddGUI = new AddGUI(gh, sessionUser, mainPane, ghPane, rb);
 			fxmlLoader.setController(ghAddGUI);
 		} else if (event.getSource() == editSub) {
 			fxmlLoader = new FXMLLoader(getClass().getResource("Edit.fxml"));
-			ghEditGUI = new EditGUI(gh, sessionUser, mainPane, ghPane);
+			ghEditGUI = new EditGUI(gh, sessionUser, mainPane, ghPane, rb);
 			fxmlLoader.setController(ghEditGUI);
 		} else if (event.getSource() == listSub) {
 			fxmlLoader = new FXMLLoader(getClass().getResource("List.fxml"));
-			ghListGUI = new ListGUI(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane, ghPane);
+			ghListGUI = new ListGUI(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane, ghPane, rb);
 			fxmlLoader.setController(ghListGUI);
 		} else if (event.getSource() == enableDisable) {
 			fxmlLoader = new FXMLLoader(getClass().getResource("EnableDisable.fxml"));
-			ghEnableDisable = new EnableDisableGUI(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane, ghPane);
+			ghEnableDisable = new EnableDisableGUI(gh, sessionUser.getUsername(), sessionUser.getPassword(), mainPane, ghPane, rb);
 			fxmlLoader.setController(ghEnableDisable);
 		} else if (event.getSource() == deleteSub) {
 			fxmlLoader = new FXMLLoader(getClass().getResource("Delete.fxml"));
-			ghDeleteGUI = new DeleteGUI(gh, sessionUser, mainPane, ghPane);
+			ghDeleteGUI = new DeleteGUI(gh, sessionUser, mainPane, ghPane, rb);
 			fxmlLoader.setController(ghDeleteGUI);
 		} else if (event.getSource() == reportSub) {
 			fxmlLoader = new FXMLLoader(getClass().getResource("Reports/Reports.fxml"));
-			ghReportGUI = new ReportGUI(gh, sessionUser, mainPane, ghPane);
+			ghReportGUI = new ReportGUI(gh, sessionUser, mainPane, ghPane, rb);
 			fxmlLoader.setController(ghReportGUI);
 		}
 		
