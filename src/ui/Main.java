@@ -53,6 +53,8 @@ public class Main extends Application{
 		
 		// I can handle the load and the close of the app in here
 		// ---
+		
+		// Just for tagging
 		primaryStage.setHeight(460);
 		ghGUI.loadLogin();
 		
