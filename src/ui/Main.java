@@ -55,6 +55,7 @@ public class Main extends Application{
 		// ---
 		
 		// Just for tagging
+		// Just for taggin x2, somehow it doesn't appears (:)
 		primaryStage.setHeight(460);
 		ghGUI.loadLogin();
 		
